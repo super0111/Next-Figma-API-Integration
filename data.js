@@ -2,30 +2,30 @@ const events = [
   {
     id: 'ayayay',
     featured: true,
-    title: 'Monster Jam is Coming!',
-    text: "Don't Miss Out Seeing Your Favorite Monster Jam trucks in your Town!",
+    // title: 'Christian Nodal',
+    // text: 'AYAYAY! 2022 tour',
     artist: { id: 'nodal', name: 'Christian Nodal' },
     priceRange: { min: 10, max: 2000 },
-    bigImage: '/images/Homepage1/Group 89.png',
+    bigImage: '/images1/events/nodal/ayayay/big.jpg',
     rate: '4.7',
   },
   {
     id: 'papi',
     featured: true,
-    title: 'Eric Church Brings Double',
-    text: "The Gather Again tour is stopping in your city. See him live in concert!",
+    // title: 'Maluma',
+    // text: "Papi Juancho Europe Tour 2022",
     artist: { id: 'maluma', name: 'Maluma' },
-    bigImage: '/images/Group 132.png',
+    bigImage: '/images1/events/maluma/papi/big.webp',
     bigImageHasTitle: true,
     rate: '5',
   },
   {
     id: '40años',
     featured: true,
-    title: 'NFL Tickets',
-    text: "Grab tickets today and be there live in the stands!",
+    // title: 'NFL Tickets',
+    // text: "Grab tickets today and be there live in the stands!",
     artist: { id: 'angeles', name: 'Los Ángeles Azules' },
-    bigImage: '/images/Group 133.png',
+    bigImage: '/images1/events/angeles/40años/big.jpg',
     bigImageHasTitle: true,
     rate: '5'
   },
@@ -45,12 +45,7 @@ const topSellings = [
   { title: "Eagles", text: "In today&apos;s faddish, fractured rock landscape, it&apos;s refreshing that classic", events: "17", star: "5", url: "/images/Homepage1/Group 97.png"  },
   { title: "Imagine Dragons", text: "What happens in Vegas doesnot always stay in Vegas, and Imagine Dragons", events: "15", star: "5", url: "/images/Homepage1/Group 98.png"  },
   { title: "Bad Bunny", text: "It&apos;s undeniable that Bad Bunny is one of the hottest Latin trap stars of our time", events: "26", star: "5", url: "/images/Homepage1/Group 99.png"  },
-  { title: "Def Leppard", text: "The world is a confusing place, but there&apos;s one resounding truth", events: "12", star: "5", url: "/images/Homepage1/Group 100.png"  },
-  { title: "Eagles", text: "It&apos;s undeniable that Bad Bunny is one of the hottest Latin trap stars of our time", events: "45", star: "5", url: "/images/Homepage1/Group 104.png"  },
-  { title: "Coldplay", text: "Coldplay is one of the best-loved British rock bands in the world, with numerous", events: "12", star: "5", url: "/images/Homepage1/Group 101.png"  },
-  { title: "Red Hot Chili Peopers", text: "In today&apos;s faddish, fractured rock landscape, it&apos;s refreshing that classic", events: "23", star: "4", url: "/images/Homepage1/Group 102.png" },
-  { title: "Def Leppard", text: "The world is a confusing place, but there&apos;s one resounding truth", events: "12", star: "5", url: "/images/Homepage1/Group 103.png" },
-];
+  ];
 const sports = [
   { title: "Charlotte Hornets", text: "In today&apos;s faddish, fractured rock landscape, it&apos;s refreshing that classic", events: "12", star: "2", url: "/images/Homepage1/Group 108.png"  },
   { title: "Imagine Pacers", text: "What happens in Vegas doesnot always stay in Vegas, and Imagine Dragons", events: "31", star: "3", url: "/images/Homepage1/Group 109.png"  },
@@ -95,28 +90,28 @@ const eventDates = [
     artistId: 'maluma',
     eventId: 'ayayay',
     date: 'Mar 18',
-    city: ' Ciudad Juárez, Mexico',
+    city: 'Ciudad Juárez, Mexico',
     venue: 'Estadio Juárez Vive',
   },
   {
     artistId: 'nodal',
     eventId: 'ayayay',
     date: 'Mar 19',
-    city: ' Chihuahua, Mexico',
-    venue: 'Estadio Monumental Chihuahua',
+    city: 'Chihuahua, Mexico',
+    venue: 'Estadio Monumental',
   },
   {
     artistId: 'nodal',
     eventId: 'ayayay',
     date: 'Mar 26',
-    city: ' Medellín, Colombia',
+    city: 'Medellín, Colombia',
     venue: 'Estadio Atanasio Girardot',
   },
   {
     artistId: '40años',
     eventId: 'angeles',
     date: 'Apr 3',
-    city: ' Manta, Ecuador',
+    city: 'Manta, Ecuador',
     venue: 'Estadio Jocay',
   },
   {
@@ -212,40 +207,56 @@ const artistDetails = [
 ];
 
 const lowestLists = [
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 190.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 190.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 190.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 184.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 190.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 190.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 190.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 190.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 140.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 190.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 190.00, type: "Mobile Entry" },
-  { title: "Sec 201, Row 3", comment: "Resale Ticket", price: 120.00, type: "Mobile Entry" },
+  { ticketId: "1", title: "Sec 232", row: "1", comment: "VIP", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "2", title: "Sec 201", row: "2", comment: "BARRERA SOMBRA", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "3", title: "Sec 354", row: "3", comment: "1ER TENDIDO SOMBRA", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "4", title: "Sec 201", row: "2", comment: "2DO TENDIDO SOMBRA", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "5", title: "Sec 201", row: "3", comment: "BARRERA SOMBRA", price: 190.00, type: "Mobile Entry" },
+  { ticketId: "6", title: "Sec 321", row: "4", comment: "GENERAL SOMBRA", price: 190.00, type: "Mobile Entry" },
+  { ticketId: "7", title: "Sec 201", row: "6", comment: "2DO TENDIDO SOMBRA", price: 190.00, type: "Mobile Entry" },
+  { ticketId: "8", title: "Sec 123", row: "2", comment: "Resale Ticket", price: 184.00, type: "Mobile Entry" },
+  { ticketId: "9", title: "Sec 201", row: "4", comment: "BARRERA SOMBRA", price: 190.00, type: "Mobile Entry" },
+  { ticketId: "10", title: "Sec 201", row: "2", comment: "GENERAL SOMBRA", price: 190.00, type: "Mobile Entry" },
+  { ticketId: "11", title: "Sec 232", row: "2", comment: "BARRERA SOMBRA", price: 190.00, type: "Mobile Entry" },
+  { ticketId: "12", title: "Sec 201", row: "4", comment: "1ER TENDIDO SOMBRA", price: 190.00, type: "Mobile Entry" },
+  { ticketId: "13", title: "Sec 232", row: "3", comment: "T. ALTO", price: 140.00, type: "Mobile Entry" },
+  { ticketId: "14", title: "Sec 242", row: "1", comment: "1ER TENDIDO SOMBRA", price: 190.00, type: "Mobile Entry" },
+  { ticketId: "15", title: "Sec 201", row: "1", comment: "T. ALTO", price: 190.00, type: "Mobile Entry" },
+  { ticketId: "16", title: "Sec 201", row: "2", comment: "GENERAL SOMBRA", price: 120.00, type: "Mobile Entry" },
 ]
 const sectionLists = [
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 190.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 15.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 189.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 5.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 136.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 326.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 361.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 361.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 76.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
-  { title: "Setion 1, Row1", comment: "Resale Ticket", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "1", title: "Setion 1", row: "2", comment: "GENERAL SOMBRA", price: 190.00, type: "Mobile Entry" },
+  { ticketId: "2", title: "Setion 2", row: "5", comment: "GENERAL SOMBRA", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "3", title: "Setion 1", row: "4", comment: "BARRERA SOMBRA", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "4", title: "Setion 4", row: "6", comment: "GENERAL SOMBRA", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "5", title: "Setion 5", row: "2", comment: "BARRERA SOMBRA", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "6", title: "Setion 4", row: "2", comment: "T. ALTO", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "7", title: "Setion 1", row: "1", comment: "BARRERA SOMBRA", price: 15.00, type: "Mobile Entry" },
+  { ticketId: "8", title: "Setion 3", row: "4", comment: "T. ALTO", price: 189.00, type: "Mobile Entry" },
+  { ticketId: "9", title: "Setion 1", row: "2", comment: "2DO TENDIDO SOMBRA", price: 5.00, type: "Mobile Entry" },
+  { ticketId: "10", title: "Setion 3", row: "2", comment: "1ER TENDIDO SOMBRA", price: 136.00, type: "Mobile Entry" },
+  { ticketId: "11", title: "Setion 2", row: "1", comment: "2DO TENDIDO SOMBRA", price: 326.00, type: "Mobile Entry" },
+  { ticketId: "12", title: "Setion 5", row: "3", comment: "VIP", price: 361.00, type: "Mobile Entry" },
+  { ticketId: "13", title: "Setion 6", row: "5", comment: "1ER TENDIDO SOMBRA", price: 361.00, type: "Mobile Entry" },
+  { ticketId: "14", title: "Setion 2", row: "6", comment: "1ER TENDIDO SOMBRA", price: 76.00, type: "Mobile Entry" },
+  { ticketId: "15", title: "Setion 2", row: "2", comment: "VIP", price: 36.00, type: "Mobile Entry" },
+  { ticketId: "16", title: "Setion 1", row: "3", comment: "T. ALTO", price: 36.00, type: "Mobile Entry" },
+]
+
+const ticketsDetails = [
+  { ticketId: "1", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "3", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 523, orderCharge: 5 },
+  { ticketId: "2", title: "Imagine Ghost", date: "Monday, April 11, 2022 at 8.00 AM", quantity: "5", priceLevel: "Rowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 645, orderCharge: 5 },
+  { ticketId: "3", title: "Imagine Crow", date: "Thesday, April 14, 2022 at 9.00 AM", quantity: "7", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 235, orderCharge: 5 },
+  { ticketId: "4", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 3.00 AM", quantity: "3", priceLevel: "Cwrol", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 363, orderCharge: 5 },
+  { ticketId: "5", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 5.00 PM", quantity: "2", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 523, orderCharge: 5 },
+  { ticketId: "6", title: "Imagine Sven", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "6", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 524, orderCharge: 5 },
+  { ticketId: "7", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 11.00 AM", quantity: "3", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 233, orderCharge: 5 },
+  { ticketId: "8", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "6", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 633, orderCharge: 5 },
+  { ticketId: "9", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 5.00 PM", quantity: "7", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 433, orderCharge: 5 },
+  { ticketId: "10", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "2", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 533, orderCharge: 5 },
+  { ticketId: "11", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "3", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 633, orderCharge: 5 },
+  { ticketId: "12", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.12 AM", quantity: "4", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 233, orderCharge: 5 },
+  { ticketId: "13", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "3", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 533, orderCharge: 5 },
 ]
 
 const tickets = require('./data/tickets.json');
@@ -353,6 +364,13 @@ async function getEventDates(artistId, eventId) {
   );
 }
 
+async function getTicketDetails(ticketId) {
+  return ticketsDetails.find(
+    (ticketsDetail) =>
+    ticketsDetail.ticketId == ticketId
+  );
+}
+
 async function getEventDate(artistId, eventId, date) {
   return eventDates.find(
     (eventDate) =>
@@ -391,6 +409,7 @@ module.exports = {
   getArtistDetails,
   getFeaturedVenues,
   getTickets,
+  getTicketDetails,
   getEventDates,
   getEventDate,
   getVenueSetupByEvent,

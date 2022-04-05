@@ -21,7 +21,7 @@
     outline: none;
 }
 .divider {
-    border-bottom: 1px solid rgb(205 193 193);
+    border-bottom: 1px solid rgba(169, 188, 208, 0.5);
     width: 100%;
     margin-top: 40px;
 }

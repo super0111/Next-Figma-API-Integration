@@ -18,34 +18,21 @@ export default function HomePage(props) {
   const { HeaderEvents, AmericanExpresses, BrowseCategories, TopSellings, Sports, ArtsTheaters, Families, DiscoverMoreEvents, featuredArtists,  featuredVenues } = props;
   const [featEv, setFeatEv] = useState({ idx: 0, event: HeaderEvents[0] });
 
-  useEffect(() => {
-    setTimeout(() => {
-      let nextFeatEv = featEv.idx + 1;
-      if (nextFeatEv > 2) nextFeatEv = 0;
-      setFeatEv({ idx: nextFeatEv, event: HeaderEvents[nextFeatEv] });
-    }, 5000),
-      [];
-  });
-  const event = featEv?.event;
+
 
   return (
     <div>
       <Head>
-        <title>Backend</title>
+        <title>boletospro.com</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <main>
         <Layout>
           <Header />
-          <HeaderBody HeaderEvents = { HeaderEvents } event = { event } />
-          <AmericanExpress AmericanExpresses = { AmericanExpresses } />
-          <BrowseCategory BrowseCategories = { BrowseCategories } />
+          <HeaderBody events = { HeaderEvents }  />
           <TopSelling TopSellings = { TopSellings } />
           <Sport Sports = { Sports } />
-          <ArtsTheater ArtsTheaters = { ArtsTheaters } />
-          <Family Families = { Families } />
-          <DiscoverMoreEvent DiscoverMoreEvents = { DiscoverMoreEvents } />
         </Layout>
       </main>
     </div>

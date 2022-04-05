@@ -19,7 +19,7 @@ export default function EventBar(props) {
         </div>
         <span className={classes.txt}>{eventDate.date}</span>
         <span className={classes.txt}>
-          {eventDate.venue}, {eventDate.venue}
+          {eventDate.venue}, {eventDate.city}
         </span>
       </div>
     </div>

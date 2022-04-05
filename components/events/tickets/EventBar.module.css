@@ -3,6 +3,7 @@
   background-color: #58a4b0;
   padding: 1.3em 3em 1.3em 3em;
   display: flex;
+  justify-items: flex-end;
   z-index: 90;
 }
 

@@ -19,6 +19,7 @@ export function getBrowseCategory() {
 }
 
 export function getTopSelling() {
+  console.log("asdfsf")
   return axios
     .get('http://localhost:3000/api/topSellings/featured')
     .then((res) => res.data);

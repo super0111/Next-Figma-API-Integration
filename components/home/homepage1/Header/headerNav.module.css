@@ -2,26 +2,19 @@
     background: #191a1d;
     opacity: 0.7;
     position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 30px;
-    padding: 30px 10px;
-    z-index: 1000;
 }
-.headerTool {
+.headerTool, .headerToolScroll {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 30px;
-    padding: 40px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 70px;
+    padding: 0 10px;
     z-index: 1000;
 }
+
 .headerToolResponsive {
     display: none;
 }
@@ -52,6 +45,14 @@
     padding: 5px;
     border-radius: 5px;
     margin-bottom: 0!important;
+}
+
+
+.rightSideMenu {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 .navbarSearchIcon {
     font-size: 15px;

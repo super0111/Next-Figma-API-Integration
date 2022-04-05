@@ -12,7 +12,9 @@ import { getEventDates, getTickets, getFamilyById, getFamily } from '../../../..
 import { useState } from 'react';
 export default function EventPage(props) {
   const { event, artistDetails, Families } = props;
+  const router = useRouter();
   const [state, setState] = useState("Events");
+  // const eventsPage = !router.asPath.match('#bio');
 
   const { data, isLoading, isError } = useQuery(
     ['eventDates', event.id],

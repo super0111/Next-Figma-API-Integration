@@ -5,6 +5,8 @@ import TicketsListBody from './ticketsListBody';
 import { getLowestLists, getSectionLists } from '../../../data';
 
 const TicketsList = (props) => {
+    const selectValue = props.state.options;
+    const ticketCount = props.ticketCount.options
     const [ minState, setMin ] = useState(0);
     const [ maxState, setMax ] = useState(100);
     const [ lowestLists, setLowestLists ] = useState([])
@@ -30,7 +32,7 @@ const TicketsList = (props) => {
                 onChange={({ min, max }) => handleChange({ min, max })}
             />
             <div className={classes.divider}></div>
-            <TicketsListBody lowestLists={lowestLists} sectionLists={sectionLists} />
+            <TicketsListBody selectValue={selectValue} ticketCount={ticketCount} lowestLists={lowestLists} sectionLists={sectionLists} />
         </div>
     )
 }

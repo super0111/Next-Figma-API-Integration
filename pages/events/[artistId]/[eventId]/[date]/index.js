@@ -4,21 +4,26 @@ import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import EventBar from '../../../../../components/events/tickets/EventBar';
 import TicketSelector from '../../../../../components/events/tickets/TicketSelector';
-
+import HeaderNav from '../Header/headerNav';
 export default function EventPage(props) {
   const { event, eventDate, artist } = props;
   return (
-    <div className={classes.main}>
-      <EventBar event={event} eventDate={eventDate} artist={artist} />
-      <div className={classes.body}>
-        <TicketSelector eventid={event.id} />
-        <InnerImageZoom
-          className={classes.zimg}
-          src='/images/venues/PLAZA DE TOROS LAY OUT AF 2020-1.png'
-          width={"66%"}
-        />
+    <>
+      <div className={classes.navbar}>
+      <HeaderNav />
       </div>
-    </div>
+      <div className={classes.main}>
+        <EventBar event={event} eventDate={eventDate} artist={artist} />
+        <div className={classes.body}>
+          <TicketSelector eventid={event.id} />
+          <InnerImageZoom
+            className={classes.zimg}
+            src='/images/venues/PLAZA DE TOROS LAY OUT AF 2020-1.png'
+            width={'66%'}
+          />
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -15,8 +15,8 @@ export default function Sport(props) {
                 </div>
             </div>
             <div className={classes.cardsBody}>
-                {Sports.map((Sport) => (
-                    <div KEY={Sport.title} className={classes.cards}>
+                {Sports.map((Sport, i) => (
+                    <div key={i} className={classes.cards}>
                         <div className={classes.relative}>
                             <img className={classes.cardImg} src={Sport.url} />
                             <div className={classes.cardSelling}>

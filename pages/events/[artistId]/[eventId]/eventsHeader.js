@@ -22,10 +22,6 @@ const EventsHeader = (props) => {
                             <span className={ state === 'Events' ? `${classes.skyColor} ${classes.headerBottomText}` : classes.headerBottomText }>Events ({eventDates.length})</span>
                             <div className={ state === 'Events' ? classes.borderBottom : "" }></div>
                         </div>
-                        <div onClick={() => setState("Reviews")} className={classes.cursorPointer}>
-                            <span className={ state === 'Reviews' ? `${classes.skyColor} ${classes.headerBottomText}` : classes.headerBottomText}>Reviews (10000)</span>
-                            <div className={ state === 'Reviews' ? classes.borderBottom : ""}></div>
-                        </div>
                         <div onClick={() => setState("Bio")} className={classes.cursorPointer}>
                             <span className={ state === 'Bio' ? `${classes.skyColor} ${classes.headerBottomText}` : classes.headerBottomText}>Bio</span>
                             <div className={ state === 'Bio' ? classes.borderBottom : ""}></div>

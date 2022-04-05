@@ -16,26 +16,38 @@ export default function TicketSelector(props) {
     setTimeout(() => {
       const setup = getVenueSetupByEvent(eventid);
       setSetup(setup);
-    }, 1500);
+    }, 500);
   }, []);
 
-  if (setup)
+  if (setup) {
     for (let i = 1; i <= setup.maxTickets; ++i)
-      tickets.push({ value: i, label: i });
+    tickets.push({ value: i, label: i });
+  }
+
+  const [ zoneState, setZoneState ] = useState([])
+  const handleOptionChange = (options) => {
+    setZoneState({ options });
+  }
+
+
+  const [ ticketCount, setTicketCount ] = useState([])
+  const handleTicketsChange = (options) => {
+    setTicketCount({ options });
+  }
 
   return (
     <div className={classes.sel}>
       {setup ? (
-        <Select className={classes.selectField} placeholder='Number of Tickets...' options={tickets} />
+        <Select className={classes.selectField} placeholder='Number of Tickets...' options={tickets} onChange={handleTicketsChange} />
       ) : (
         <Skeleton className={classes.selectField} height={38} />
       )}
       {setup ? (
-        <Select className={classes.selectField1} placeholder='Select Zone...' options={setup.zones} />
+        <Select className={classes.selectField1} placeholder='Select Zone...' options={setup.zones} onChange={handleOptionChange} />
       ) : (
         <Skeleton className={classes.selectField1} height={38} />
       )}
-      <TicketsList />
+      <TicketsList ticketCount={ticketCount} state={zoneState} />
     </div>
   );
 }

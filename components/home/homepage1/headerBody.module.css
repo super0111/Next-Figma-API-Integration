@@ -4,9 +4,17 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-}
-.headerBodyBg {
     width: 100%;
+}
+.headerBodyBar {
+    width: 100%;
+    background-color: #090A0D;
+    display: flex;
+    justify-content: center;
+}
+.headerBodyImg {
+    width: 1920px;
+    height: 939px;
 }
 .headerTextField {
     display: flex;
@@ -14,7 +22,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 23%;
+    top: 45%;
     left: 10%;
     right: 10%;
     text-align: center;
@@ -30,6 +38,8 @@
     font-size: 2rem;
     margin-top: 1rem !important;
 }
+
+
 .headerBtn {
     background-color: #DAA49A;
     border: 1px solid white;
@@ -50,17 +60,17 @@
     align-items: center;
     position: absolute;
     top: 41%;
-    right: 17px;
+    right: 30px;
     text-align: center;
 }
-.sliderItem {
-    font-size: 18px;
+.sliderItemActive {
+    font-size: 30px;
     color: white;
     font-weight: 700;
     cursor: pointer;
 }
-.sliderItemActive {
-    font-size: 12px;
+.sliderItem {
+    font-size: 20px;
     color: rgb(163, 161, 161);
     font-weight: 500;
     cursor: pointer;
@@ -71,7 +81,7 @@
 }
 .headerFooter {
     background: white;
-    border-radius: 20px;
+    border-radius: 20px 20px 0 0;
     padding: 30px;
     position: absolute;
     bottom: -138px;
@@ -114,10 +124,10 @@
     border: none;
     height: 40px;
     font-size: 14px;
-    width: 73%;
+    width: 75%;
 }
 .cityInputIcon {
-    width: 15px
+    color: #DAA49A;
 }
 .borderVertical {
     border-right: 1px solid rgba(169, 188, 208, 0.3);
@@ -296,9 +306,9 @@
         font-size: 13px;
         margin-top: 10px;
     }
-    .sliderItem {
+    /* .sliderItem {
         font-size: 15px;
-    }
+    } */
     .headerBtn {
         width: 100px;
         height: 32px;
@@ -311,9 +321,9 @@
     .headerText {
         display: none;
     }
-    .headerSlider {
+    /* .headerSlider {
         top: 22%;
-    }
+    } */
 }
 @media screen and (max-width: 406px) {
     .headerTitle {
@@ -322,9 +332,9 @@
     .headerBodyBg {
         height: 220px;
     }
-    .headerSlider {
+    /* .headerSlider {
         top: 23%;
-    }
+    } */
     .searchBtn {
         width: 60px;
         font-size: 14px;

@@ -41,7 +41,6 @@ const EventsAllConcerts = (props) => {
                                 <FaChevronDown color="#545454" size={10}/>
                                 <div className={classes.ml1}>
                                     <h6 className={classes.concertTitle}>{eventDate.date}</h6>
-                                    {/* <span className={classes.concertTime}>{eventDate.venue}</span> */}
                                 </div>
                             </div>
                             <div className={classes.city}>

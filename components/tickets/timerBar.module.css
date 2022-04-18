@@ -1,0 +1,14 @@
+.cont {
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 40px;
+    background-color: #0070f3;
+    color: white;
+    font-weight: bolder;
+}
+
+.warn {
+    background-color: red;
+}

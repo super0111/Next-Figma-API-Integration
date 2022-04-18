@@ -1,8 +1,6 @@
 .signIn {
     display: flex;
     justify-content: space-between;
-    max-width: 1490px;
-    margin: auto;
 }
 .left {
     /* width: 30%; */

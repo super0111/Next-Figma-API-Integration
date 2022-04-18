@@ -88,7 +88,7 @@ const SignUp = () => {
                         By continuing past this page, you agree to the <span className={classes.font_red}>Terms of Use</span> and understand that information will be used as described in our <sapn className={classes.font_red}>Privacy Policty.</sapn>
                     </div>
                     <div className={classes.signUp_field}>
-                        Had a account? <a href='/signIn' className={classes.footer_signUp_btn}>Sign In</a>
+                        have a account? <a href='/signIn' className={classes.footer_signUp_btn}>Sign In</a>
                     </div>
                 </div>
             </div>

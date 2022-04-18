@@ -9,7 +9,7 @@ const sections1 = [
   { title: 'Artists', url: '#' },
   { title: 'Venues', url: '#' },
 ];
-const sections2 = [{ title: 'Sign In', url: '#' }];
+const sections2 = [{ title: 'Sign In', url: '/signIn' }];
 
 const HeaderNav = () => {
   const [scroll, setScroll] = useState(false);
@@ -68,7 +68,7 @@ const HeaderNav = () => {
             : classes.headerToolResponsive
         }
       >
-        <NavMenuDraw />
+        {/* <NavMenuDraw /> */}
         <div className={classes.navbarLogo}>
           <img
             className={classes.navbarLogoImg}

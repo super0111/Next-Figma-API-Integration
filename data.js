@@ -244,7 +244,7 @@ const sectionLists = [
 ]
 
 const ticketsDetails = [
-  { ticketId: "1", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "3", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 523, orderCharge: 5 },
+  { ticketId: "11", title: "AYAYAY! TOUR", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "3", priceLevel: "Bowl", level: "BARRERA SOMBRA", section: "1", Row: "2", seats: "6-8", totalPrice: 410, orderCharge: 30 },
   { ticketId: "2", title: "Imagine Ghost", date: "Monday, April 11, 2022 at 8.00 AM", quantity: "5", priceLevel: "Rowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 645, orderCharge: 5 },
   { ticketId: "3", title: "Imagine Crow", date: "Thesday, April 14, 2022 at 9.00 AM", quantity: "7", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 235, orderCharge: 5 },
   { ticketId: "4", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 3.00 AM", quantity: "3", priceLevel: "Cwrol", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 363, orderCharge: 5 },
@@ -254,7 +254,7 @@ const ticketsDetails = [
   { ticketId: "8", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "6", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 633, orderCharge: 5 },
   { ticketId: "9", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 5.00 PM", quantity: "7", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 433, orderCharge: 5 },
   { ticketId: "10", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "2", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 533, orderCharge: 5 },
-  { ticketId: "11", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "3", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 633, orderCharge: 5 },
+  { ticketId: "1", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "3", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 633, orderCharge: 5 },
   { ticketId: "12", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.12 AM", quantity: "4", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 233, orderCharge: 5 },
   { ticketId: "13", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "3", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 533, orderCharge: 5 },
 ]

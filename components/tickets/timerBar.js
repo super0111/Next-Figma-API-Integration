@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useShopContext } from '../../context/shopContext';
 import classes from './timerBar.module.css';
 
@@ -11,6 +11,9 @@ export default function timerBar() {
 
   setTimeout(() => {
     setElapsed(elapsed + 1);
+    if(state.stage == 'authorized') {
+      setElapsed(0)
+    }
   }, 1000);
 
   const diff = 300 - elapsed;
@@ -33,6 +36,7 @@ export default function timerBar() {
           )}
         </div>
       )}
+      {state.stage == 'captured' && ""}
     </div>
   );
 }

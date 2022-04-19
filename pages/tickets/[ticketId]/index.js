@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useContext, useEffect, useMemo} from "react";
 import Layout from "../../../modules/layout/Layout"
 import Header from "../../../components/home/homepage1/Header"
 import HeaderBody from "./HeaderBody"
 import { getTicketDetails } from "../../../data";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import TimerBar from '../../../components/tickets/timerBar';
 import StatusBar from '../../../components/tickets/statusBar';
@@ -13,9 +14,12 @@ import classes from './index.module.css'
 import { useShopContext } from '../../../context/shopContext';
 
 const Ticket = (props) => {
+    const { state, setState } = useShopContext();
     const tickets = props.tickets;
-    const {state} = useShopContext()
-    console.log("context state", state)
+    useEffect(() => {
+        setState({ cart: tickets})
+    }, [tickets])
+  
     return(
         <Layout>
             <Header />
@@ -23,9 +27,10 @@ const Ticket = (props) => {
             <div className={classes.cont}>
                 <TimerBar />
                 <StatusBar />
-                <ShoppingCartSummary tickets = {tickets} />
+                <ShoppingCartSummary />
                 <Payment />
             </div>
+            <ToastContainer />
         </Layout>
     )
 }

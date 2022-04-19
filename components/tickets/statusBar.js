@@ -3,7 +3,7 @@ import classes from './statusBar.module.css'
 
 export default function statusBar() {
     const { state, funcs } = useShopContext()
-    console.log("state error", state)
+    // console.log("state error", state)
 
     if (!state.errorMsg) return null;
     

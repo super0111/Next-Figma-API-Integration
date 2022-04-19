@@ -19,10 +19,10 @@ const MERCHANT_ID_TEST = 508029;
 const MERCHANT_ID = MERCHANT_ID_TEST;
 
 export async function authorizePayment(data) {
-  const { total } = data;
+  const { totalPrice } = data;
   //ApiKey~merchantId~referenceCode~tx_value~currency
   let referenceCode = 'MYSALE0001';
-  let ref = `${API_KEY}~${MERCHANT_ID}~${referenceCode}~${total.amount}~${total.currency}`;
+  let ref = `${API_KEY}~${MERCHANT_ID}~${referenceCode}~${totalPrice.amount}~${totalPrice.currency}`;
 
   let req = {
     language: 'es',
@@ -41,8 +41,8 @@ export async function authorizePayment(data) {
         notifyUrl: 'http://www.payu.com/notify',
         additionalValues: {
           TX_VALUE: {
-            value: total.amount,
-            currency: total.currency,
+            value: totalPrice.amount,
+            currency: totalPrice.currency,
           },
         },
         //  "buyer": {

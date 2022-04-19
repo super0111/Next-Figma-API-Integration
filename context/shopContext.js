@@ -1,25 +1,31 @@
 import axios from 'axios';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ShopContext = createContext();
 
+const stateReducer = (state, action) => {
+  return { ...state, ...action }
+}
+
 export function ShopContextProvider({ children }) {
-  const [state, setState] = useState({
+  const [state, setState] = useReducer(stateReducer, {
     stage: 'init',
     cart: {
-      ticketsCnt: 2,
-      total: 440,
-      totalFees: 30,
-      currency: 'USD',
+      // ticketsCnt: 2,
+      // totalPrice: 440,
+      // totalFees: 30,
+      // currency: 'USD',
     },
   });
 
   function setStage(newStage) {
-    setState({ ...state, stage: newStage });
+    setState({ stage: newStage });
   }
 
   function setError(data) {
-    setState({ ...state, stage: 'error' });
+    setState({ stage: 'error' });
   }
 
   function triggerTimeout() {
@@ -28,13 +34,12 @@ export function ShopContextProvider({ children }) {
   }
 
   function setPaymentFee(paymentFee) {
-    const fee = Math.round(state.cart.total * paymentFee * 100) / 100;
+    const fee = Math.round(state.cart.totalPrice * paymentFee * 100) / 100;
     setState({
-      ...state,
       cart: {
         ...state.cart,
         paymentFee: fee,
-        totalCharge: state.cart.total + fee,
+        totalCharge: state.cart.totalPrice + fee,
       },
     });
   }
@@ -43,20 +48,24 @@ export function ShopContextProvider({ children }) {
     axios
       .post('/api/shop/authorize', {
         data: {
-          total: { amount: state.cart.total, currency: state.cart.currency },
+          totalPrice: { amount: state.cart.totalPrice, currency: state.cart.currency },
         },
       })
       .then(res => { 
-          if (res.status == 200 )
+          if (res.status == 200 ) {
             onPaymentAuthorized(res.data) 
-            else 
-            setError(res.data)})
+            toast.info("Successfully Authorize")
+          } else {
+            setError(res.data)
+            toast.error("Error", res.data)
+          }
+      })
       .catch(err=> {
           console.log({err}); })
   }
 
   function onPaymentAuthorized(data) {
-    setState({ ...state, stage: 'authorized', ...data });
+    setState({ stage: 'authorized', ...data });
   }
 
   function capturePayment(payment) {
@@ -67,23 +76,30 @@ export function ShopContextProvider({ children }) {
           orderId: state.orderId,
         },
       })
-      .then((res) =>
-        res.status == 200 ? onPaymentCaptured(res.data) : setError(res.data)
-      );
+      .then((res) =>{
+        if(res.status == 200) {
+          onPaymentCaptured(res.data)
+          toast.info("Successsfully captured")
+        } else {
+          setError(res.data)
+          toast.error("Error", res.data)
+        }
+      });
   }
 
   function onPaymentCaptured(data) {
-    setState({ ...state, stage: 'captured', ...data });
+    setState({ stage: 'captured', ...data });
   }
 
   useEffect(() => {
     getSession().then((res) =>
-      setState({ ...state, stage: 'shopping', session: res.data })
+      setState({ stage: 'shopping', session: res.data })
     );
   }, []);
 
   const ctx = {
     state,
+    setState,
     funcs: {
       setStage,
       triggerTimeout,

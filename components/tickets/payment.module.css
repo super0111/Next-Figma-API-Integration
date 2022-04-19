@@ -65,12 +65,16 @@
     display: flex;
     align-items: center;
     gap: 4px;
+    cursor: pointer;
+}
+.radio {
+    cursor: pointer;
 }
 
 .lbl {
     display: flex;
     align-content: center;
-
+    cursor: pointer;
 }
 
 .form {

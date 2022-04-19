@@ -39,15 +39,16 @@ const paymentMethods = [
 export default function Payment() {
   const { state, funcs } = useShopContext()
   const { stage } = state
+  console.log("stage", stage)
 
   if (!state) return null;
 
   return (
     <div className={classes.cont}>
-    { stage != 'captured' &&  <PaymentMethod setPaymentFee={funcs.setPaymentFee} /> }
-    { stage == 'authorized' && <Confirmation /> }
-    { stage == 'captured' && <PurchaseComplete /> }
-    { stage == 'error' && <Error /> }
+      { stage != 'captured' &&  <PaymentMethod setPaymentFee={funcs.setPaymentFee} /> }
+      { stage == 'authorized' && <Confirmation /> }
+      { stage == 'captured' && <PurchaseComplete /> }
+      { stage == 'error' && <Error /> }
     </div>
   );
 }
@@ -69,6 +70,7 @@ function PaymentMethod(props) {
         {paymentMethods.map((m, i) => (
           <div key={i} className={classes.opt}>
             <input
+              className={classes.radio}
               type='radio'
               name='method'
               id={m.method}
@@ -117,7 +119,7 @@ function CardForm() {
       </div>
       <div>
         <label className={classes.card_name} htmlFor='cardNumber'>
-          Card Number {/*TODO: tooltip for 'Dashes not required'*/}
+          Card Number
         </label>
         <input
           className={classes.input_value}

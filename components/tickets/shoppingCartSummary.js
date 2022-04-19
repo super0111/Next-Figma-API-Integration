@@ -1,31 +1,40 @@
 import { useShopContext } from '../../context/shopContext';
 import classes from './shoppingCartSummary.module.css';
+import { Rings } from  'react-loader-spinner'
 
-export default function shoppingCartSummary(props) {
-  const tickets = props.tickets;
+
+export default function shoppingCartSummary() {
   const { state, funcs } = useShopContext();
   const { cart } = state;
-
+  const totalFees = Math.round(cart.totalPrice * 8) / 100;
   if (!cart)
-    //TODO: return Skeleton instead
-    return <span>Loading...</span>;
+    return (
+      <div className={classes.dFlex}>
+        <div className={classes.loadingText}>Loading...</div>
+        <Rings color="#00BFFF" height={120} width={120} />
+      </div>
+    )
 
   return (
     <div className={classes.cont}>
       <div className={classes.ticket_title}>Ticket Details</div>
       <div className={classes.ticket_body}>
           <div className={classes.dFlex}>
+            <div className={classes.item_name}>Title of tickets:</div>
+            <div className={classes.item_value}>{cart.title}</div>
+          </div>
+          <div className={classes.dFlex}>
             <div className={classes.item_name}>Number of tickets:</div>
-            <div className={classes.item_value}>{cart.ticketsCnt}</div>
+            <div className={classes.item_value}>{cart.quantity}</div>
           </div>
           <div className={classes.dFlex}>
             <div className={classes.item_name}>Price of tickets:</div>
             <div className={classes.item_value}>
-              ${cart.total} {cart.currency}{' '}
+              ${cart.totalPrice}{' '}
               <span className={classes.fees}>
                 includes fees
                 <span className={classes.feesDetail}>
-                  ${cart.totalFees} {cart.currency}
+                  ${totalFees} {cart.currency}
                 </span>
               </span>
             </div>

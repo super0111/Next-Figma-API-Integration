@@ -1,7 +1,22 @@
+import React, { useState, useEffect } from "react"
 import { BsFillChatSquareDotsFill, BsLockFill } from "react-icons/bs";
 import classes from './index.module.css'
 
 const SignIn = () => {
+    const [ emailValue, setEmailValue ] = useState("")
+    const [ passwordValue, setPasswordValue ] = useState("")
+
+    const handleEmailChange = (e) => {
+        setEmailValue(e.target.value)
+    }
+    const handlePasswordChange = (e) => {
+        setPasswordValue(e.target.value)
+    }
+
+    const handleSignIn = (e) => {
+        
+    }
+
     return (
         <div className={classes.signIn}>
             <div className={classes.left}>
@@ -19,7 +34,12 @@ const SignIn = () => {
                                 Email Address
                             </div>
                         </div>
-                        <input type="text" placeholder='yourgmail123@gmail.comn' className={classes.input} />
+                        <input 
+                            className={classes.input} 
+                            type="text" 
+                            placeholder='yourgmail123@gmail.comn' 
+                            onChange={handleEmailChange}
+                        />
                     </div>
                     <div className={classes.input_field}>
                         <div className={classes.name_field}>
@@ -28,7 +48,12 @@ const SignIn = () => {
                                 Enter password
                             </div>
                         </div>
-                        <input type="text" placeholder='Enter password' className={classes.input} />
+                        <input 
+                            className={classes.input} 
+                            type="text" 
+                            placeholder='Enter password' 
+                            onChange={handlePasswordChange}
+                        />
                     </div>
                     <div className={classes.forgotPassword_field}>
                         <div className={classes.remember_field}>
@@ -38,7 +63,7 @@ const SignIn = () => {
                         <a className={classes.forgot_name}>Forgot Password?</a>
                     </div>
                     <div className={classes.btn_field}>
-                        <button className={classes.signIn_btn}>Sign in</button>
+                        <button onClick={handleSignIn} className={classes.signIn_btn}>Sign in</button>
                     </div>
                     <div className={classes.comment}>
                         By continuing past this page, you agree to the <span className={classes.font_red}>Terms of Use</span> and understand that information will be used as described in our <sapn className={classes.font_red}>Privacy Policty.</sapn>

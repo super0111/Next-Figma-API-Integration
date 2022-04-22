@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from "react"
 import { BsFillChatSquareDotsFill, BsLockFill } from "react-icons/bs";
 import classes from './index.module.css'
+import { signIn, useSession } from 'next-auth/react';
+import { getCsrfToken, getProviders,getSession } from "next-auth/react"
+import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
+    const {data: session, status} = useSession();
+    console.log('session', session)
+  console.log('status', status)
+
+
+    const router = useRouter();
+
     const [ emailValue, setEmailValue ] = useState("")
     const [ passwordValue, setPasswordValue ] = useState("")
 
@@ -13,8 +25,31 @@ const SignIn = () => {
         setPasswordValue(e.target.value)
     }
 
-    const handleSignIn = (e) => {
-        
+    const handleSignIn = async (e) => {
+        e.preventDefault()
+		if (!session) {
+			try {
+				const result = await signIn("credentials", {
+					redirect: false,
+					email: emailValue,
+					password: passwordValue,
+                });
+                if (!result.error) {
+                    router.push("/");
+                } else{
+                    console.log("result.error", result.error)
+                    if(result.error === 'Password doesnt match'){
+                        toast.error("Password doesnt match")
+                    }else if(result.error === 'No user found with the email'){
+                        toast.error('No user found with the email')
+                    }
+                }
+			} catch (error) {
+				console.log(error,'Login Error');
+			}
+		} else {
+			router.push("/");
+		}
     }
 
     return (
@@ -50,7 +85,7 @@ const SignIn = () => {
                         </div>
                         <input 
                             className={classes.input} 
-                            type="text" 
+                            type="password" 
                             placeholder='Enter password' 
                             onChange={handlePasswordChange}
                         />
@@ -86,7 +121,28 @@ const SignIn = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     )
 }
 export default SignIn
+
+// This is the recommended way for Next.js 9.3 or newer
+export async function getServerSideProps(context) {
+    const { req } = context;
+    const session = await getSession({ req })
+
+    console.log("signPage session", session)
+    if (session) {
+        // Signed in
+        return {
+            redirect: { destination: "/" }
+        }
+    }
+    const csrfToken = await getCsrfToken(context)
+    const providers = await getProviders()
+  console.log("providers", providers)
+    return {
+        props: { csrfToken, providers },
+    }
+  }

@@ -18,15 +18,12 @@ export default function HomePage(props) {
   const { HeaderEvents, AmericanExpresses, BrowseCategories, TopSellings, Sports, ArtsTheaters, Families, DiscoverMoreEvents, featuredArtists,  featuredVenues } = props;
   const [featEv, setFeatEv] = useState({ idx: 0, event: HeaderEvents[0] });
 
-
-
   return (
     <div>
       <Head>
         <title>boletospro.com</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
       <main>
         <Layout>
           <Header />

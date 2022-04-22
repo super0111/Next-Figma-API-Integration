@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const users = new Schema({
     email: {
-		type: String, // Handle Required on Frontend for User Accounts
+		type: String,
         required: true,
 	},
 	password: {
-		type: String, // Handle Required on Frontend for User Accounts
+		type: String,
         required: true,
 	},
 	fName: {
@@ -26,7 +26,7 @@ const users = new Schema({
 	},
 });
 
-mongoose.models = {}; //Prevents overwrite warning
+mongoose.models = {};
 
 const User = mongoose.model('Users', users);
 

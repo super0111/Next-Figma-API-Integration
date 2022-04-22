@@ -3,6 +3,9 @@ import NavMenuDraw from './navMenuDraw';
 import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
 import classes from './headerNav.module.css';
+import { getCsrfToken, getProviders,getSession } from "next-auth/react"
+import { useSession } from 'next-auth/react';
+
 
 const sections1 = [
   { title: 'Concerts', url: '#' },
@@ -11,7 +14,10 @@ const sections1 = [
 ];
 const sections2 = [{ title: 'Sign In', url: '/signIn' }];
 
-const HeaderNav = () => {
+const HeaderNav = (props) => {
+  console.log("props.session",props.session);
+  const { data: session, status } = useSession()
+  console.log("header session, status",session, status)
   const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
@@ -19,6 +25,10 @@ const HeaderNav = () => {
       setScroll(window.scrollY > 50);
     });
   }, []);
+
+  const handleSignout = () => {
+
+  }
 
   return (
     <>
@@ -44,22 +54,33 @@ const HeaderNav = () => {
             />
           </a>
         </div>
-
-        <div className={classes.rightSideMenux}>
-          <Toolbar className={classes.rightSideMenu} component='nav' variant='dense'>
-            {sections2.map((section2) => (
-              <Link
-                style={{ textDecoration: 'none' }}
-                noWrap
-                key={section2.title}
-                href={section2.url}
-                className={classes.navToolbarLink}
-              >
-                {section2.title}
-              </Link>
-            ))}
-          </Toolbar>
-        </div>
+        { status === "unauthenticated" ?
+          <div className={classes.rightSideMenux}>
+            <Toolbar className={classes.rightSideMenu} component='nav' variant='dense'>
+                <Link
+                  style={{ textDecoration: 'none' }}
+                  noWrap
+                  href="/signIn"
+                  className={classes.navToolbarLink}
+                >
+                  SignIn
+                </Link>
+            </Toolbar>
+          </div> : 
+          <div className={classes.rightSideMenux}>
+            <Toolbar className={classes.rightSideMenu} component='nav' variant='dense'>
+                <Link
+                  style={{ textDecoration: 'none' }}
+                  noWrap
+                  className={classes.navToolbarLink}
+                  onClick={handleSignout}
+                >
+                  Signout
+                </Link>
+            </Toolbar>
+          </div>
+        }
+      
       </div>
       <div
         className={
@@ -88,18 +109,62 @@ const HeaderNav = () => {
             </Link>
           ))}
         </div>
-        <div className={classes.navbarSignInResponsive}>
-          <Link
-            style={{ textDecoration: 'none' }}
-            noWrap
-            href=''
-            className={classes.navResponsiveToolbarLink}
-          >
-            SignIn
-          </Link>
-        </div>
+        {  status === "authenticated" ?
+              <div className={classes.navbarSignInResponsive}>
+                <Link
+                  style={{ textDecoration: 'none' }}
+                  noWrap
+                  href=''
+                  className={classes.navResponsiveToolbarLink}
+                >
+                  Signout
+                </Link>
+              </div> : status === "unauthenticated" ?
+              <div className={classes.navbarSignInResponsive}>
+              <Link
+                style={{ textDecoration: 'none' }}
+                noWrap
+                href='/signIn'
+                className={classes.navResponsiveToolbarLink}
+              >
+                SignIn
+              </Link>
+            </div> : ""
+        }
+
       </div>
     </>
   );
 };
 export default HeaderNav;
+
+// export async function getServerSideProps(context) {
+//   const { req } = context;
+//   const session = await getSession({ req })
+//   console.log("serverside session", session)
+//   if (session) {
+//       return {
+//           redirect: { destination: "/" }
+//       }
+//   }
+//   if (!session) {
+//       return {
+//           redirect: { destination: "/sinIn" }
+//       }
+//   }
+//   const csrfToken = await getCsrfToken(context)
+//   const providers = await getProviders()
+// console.log('csrfToken', csrfToken)
+//   return {
+//       props: { csrfToken, providers },
+//   }
+// }
+
+export async function getServerSideProps(context) {
+  console.log("context ----", context)
+  return {
+    props: {
+      session: await getSession(context),
+    },
+  };
+}

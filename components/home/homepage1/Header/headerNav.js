@@ -1,24 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import NavMenuDraw from './navMenuDraw';
+import React, { useState, useEffect, useContext } from 'react';
+import { useRouter } from "next/router"
 import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
 import classes from './headerNav.module.css';
-import { getCsrfToken, getProviders,getSession } from "next-auth/react"
-import { useSession } from 'next-auth/react';
-
+import { getCsrfToken, getProviders, getSession } from "next-auth/react"
+import { VscGlobe } from "react-icons/vsc";
+import { useSession, signOut  } from 'next-auth/react';
+import CountryModal from './CountryModal';
+import { Context } from "./../../../AppContext"
 
 const sections1 = [
-  { title: 'Concerts', url: '#' },
-  { title: 'Artists', url: '#' },
-  { title: 'Venues', url: '#' },
+  { title: 'Concerts', url: '#', locale: "EN", },
+  { title: 'Conciertos', url: '#', locale: "ES", },
+  { title: 'Artists', url: '#', locale: "EN" },
+  { title: 'Artistas', url: '#', locale: "ES" },
+  { title: 'Venues', url: '#', locale: "EN" },
+  { title: 'Lugares', url: '#', locale: "ES" },
 ];
-const sections2 = [{ title: 'Sign In', url: '/signIn' }];
+const sections2 = [
+  { title: 'Sign In', url: '/signIn', locale: "EN", },
+  { title: 'Señal En', url: '/signIn"', locale: "ES", },
+];
 
 const HeaderNav = (props) => {
+  const router = useRouter()
+  const { countryValue } = useContext(Context);
+  const { locale } = useRouter()
+
   console.log("props.session",props.session);
   const { data: session, status } = useSession()
   console.log("header session, status",session, status)
-  const [scroll, setScroll] = useState(false);
+  const [ scroll, setScroll ] = useState(false);
+
+  const [ modalIsShow, setModalIsShow ] = useState(false)
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -27,18 +41,22 @@ const HeaderNav = (props) => {
   }, []);
 
   const handleSignout = () => {
+    signOut()
+  }
 
+  const handleCountryModalShow = () => {
+    setModalIsShow(true)
   }
 
   return (
-    <>
+    <div className={classes.HeaderNav}>
       <div className={scroll ? classes.headerToolScroll : classes.headerTool}>
-        <Toolbar component='nav' variant='dense'>
-          {sections1.map((section1) => (
+        <Toolbar className={classes.left_field} component='nav' variant='dense'>
+          { sections1.filter(p => p.locale === locale).map((section1, i) => (
             <Link
               style={{ textDecoration: 'none' }}
               noWrap
-              key={section1.title}
+              key={i}
               href={section1.url}
               className={classes.navToolbarLink}
             >
@@ -47,48 +65,56 @@ const HeaderNav = (props) => {
           ))}
         </Toolbar>
         <div className={classes.navbarLogo}>
-          <a href='/'>
+          <a 
+            onClick={() => {
+              router.push('/', '/', { locale: locale })
+            }}
+            locale={locale}
+          >
             <img
               className={classes.navbarLogoImg}
               src='/images/Homepage1/logo-white 1.png'
             />
           </a>
         </div>
-        { status === "unauthenticated" ?
-          <div className={classes.rightSideMenux}>
-            <Toolbar className={classes.rightSideMenu} component='nav' variant='dense'>
-                <Link
-                  style={{ textDecoration: 'none' }}
-                  noWrap
-                  href="/signIn"
-                  className={classes.navToolbarLink}
-                >
-                  SignIn
-                </Link>
-            </Toolbar>
-          </div> : 
-          <div className={classes.rightSideMenux}>
-            <Toolbar className={classes.rightSideMenu} component='nav' variant='dense'>
-                <Link
-                  style={{ textDecoration: 'none' }}
-                  noWrap
-                  className={classes.navToolbarLink}
-                  onClick={handleSignout}
-                >
-                  Signout
-                </Link>
-            </Toolbar>
-          </div>
-        }
-      
+        <div className={classes.right_field}>
+          { status === "unauthenticated" ?
+              <Toolbar className={classes.rightSideMenu} component='nav' variant='dense'>
+                  <Link
+                    style={{ textDecoration: 'none' }}
+                    noWrap
+                    onClick={() => {
+                      router.push('/signIn', '/signIn', { locale: locale })
+                    }}
+                    locale={locale}
+                    className={classes.navToolbarLink}
+                  >
+                    { locale === "EN" ? "SignIn" : locale === "ES" ? "Señal En" : "" }
+                  </Link>
+              </Toolbar> : 
+              <Toolbar className={classes.rightSideMenu} component='nav' variant='dense'>
+                  <Link
+                    style={{ textDecoration: 'none' }}
+                    noWrap
+                    className={classes.navToolbarLink}
+                    onClick={handleSignout}
+                  >
+                    { locale === "EN" ? "Signout" : locale === "ES" ? "Desconectar" : "" }
+                  </Link>
+              </Toolbar>
+          }
+          <div className={classes.border_right}></div>
+          { countryValue === "US" ? 
+            <img src='/images/flags/USA_Flag.png' className={classes.flag_img} onClick={handleCountryModalShow}/> : countryValue === "MX" ?
+            <img src='/images/flags/Mexico_flag.png' className={classes.flag_img} onClick={handleCountryModalShow} /> :
+            <div className={classes.countrySelect} onClick={handleCountryModalShow}>
+              <VscGlobe size={20} color="white" />
+            </div>
+          }
+          
+        </div>
       </div>
-      <div
-        className={
-          scroll
-            ? classes.headerToolResponsiveScroll
-            : classes.headerToolResponsive
-        }
-      >
+      <div className={ scroll ? classes.headerToolResponsiveScroll : classes.headerToolResponsive }>
         {/* <NavMenuDraw /> */}
         <div className={classes.navbarLogo}>
           <img
@@ -97,11 +123,11 @@ const HeaderNav = (props) => {
           />
         </div>
         <div className={classes.navbarSingIn}>
-          {sections2.map((section2) => (
+          {sections2.map((section2, i) => (
             <Link
               style={{ textDecoration: 'none' }}
               noWrap
-              key={section2.title}
+              key={i}
               href={section2.url}
               className={classes.navResponsiveToolbarLink}
             >
@@ -117,7 +143,7 @@ const HeaderNav = (props) => {
                   href=''
                   className={classes.navResponsiveToolbarLink}
                 >
-                  Signout
+                  { locale === "EN" ? "Signout" : locale === "ES" ? "Desconectar" : "" }
                 </Link>
               </div> : status === "unauthenticated" ?
               <div className={classes.navbarSignInResponsive}>
@@ -127,41 +153,20 @@ const HeaderNav = (props) => {
                 href='/signIn'
                 className={classes.navResponsiveToolbarLink}
               >
-                SignIn
+                { locale === "EN" ? "SignIn" : locale === "ES" ? "Señal en" : "" }
               </Link>
             </div> : ""
         }
-
       </div>
-    </>
+      { modalIsShow === true ?
+        <CountryModal modalIsShow={modalIsShow} setModalIsShow={setModalIsShow}  /> : ""
+      }
+    </div>
   );
 };
 export default HeaderNav;
 
-// export async function getServerSideProps(context) {
-//   const { req } = context;
-//   const session = await getSession({ req })
-//   console.log("serverside session", session)
-//   if (session) {
-//       return {
-//           redirect: { destination: "/" }
-//       }
-//   }
-//   if (!session) {
-//       return {
-//           redirect: { destination: "/sinIn" }
-//       }
-//   }
-//   const csrfToken = await getCsrfToken(context)
-//   const providers = await getProviders()
-// console.log('csrfToken', csrfToken)
-//   return {
-//       props: { csrfToken, providers },
-//   }
-// }
-
 export async function getServerSideProps(context) {
-  console.log("context ----", context)
   return {
     props: {
       session: await getSession(context),

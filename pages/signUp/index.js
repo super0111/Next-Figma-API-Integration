@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
     const router = useRouter();
+    const { locale } = useRouter();
     const [ emailValue, setEmailValue ] = useState("")
     const [ passwordValue, setPasswordValue ] = useState("")
     const [ fNameValue, setfNameValue ] = useState("")
@@ -38,15 +39,15 @@ const SignUp = () => {
 
     useEffect(() => {
         if(isRegistered){
-            toast.info('Thanks For Signing Up! Please Login')
-            router.push('/signIn')
+            toast.info( locale === "EN" ? 'Thanks For Signing Up! Please Login' : locale === "ES" ? "Gracias por registrarte!  Por favor Iniciar session" : "" )
+            router.push('/signIn', '/signIn', { locale: locale })
         }
     }, [isRegistered])
 
     const handleSignUp = async (e) => {  
         e.preventDefault()
         if(!emailValue || !emailValue.includes('@') || !passwordValue){
-            toast.info('Invalid details');
+            toast.info( locale === "EN" ? 'Invalid details' : locale === "ES" ? "Details invalidos" : "" );
             return;
         }
 		const url = '/api/auth/signUp';
@@ -71,7 +72,6 @@ const SignUp = () => {
             return Promise.reject(res); 
         })
         .then(function (data) {
-            console.log('data', data)
             setIsRegistered(true)
         })
         .catch((res) => {
@@ -85,18 +85,24 @@ const SignUp = () => {
     return (
         <div className={classes.signUp}>
             <div className={classes.left}>
-                <a href="/" className={classes.logo}>
+                <a 
+                    onClick={() => {
+                        router.push('/', '/', { locale: locale })
+                    }}
+                    locale={locale}
+                    className={classes.logo}
+                >
                     <img className={classes.logo_img} src='/images/signIn/logo 1.png' />
                 </a>
                 <div className={classes.body}>
                     <div className={classes.title}>
-                        Sign Up
+                        { locale === "EN" ? "Sign Up" : locale === "ES" ? "Senal Arriba" : "" }
                     </div>
                     <div className={classes.input_field}>
                         <div className={classes.name_field}>
                             <BsFillChatSquareDotsFill color="#373F51" />
                             <div className={classes.name}>
-                                Email Address
+                                { locale === "EN" ? "Email Address" : locale==="ES" ? "Dirección de correo electronico" : ""}
                             </div>
                         </div>
                         <input 
@@ -110,22 +116,31 @@ const SignUp = () => {
                         <div className={classes.name_field}>
                             <BsLockFill color="#373F51" />
                             <div className={classes.name}>
-                                Enter password
+                                { locale === "EN" ? "Enter password" : locale === "ES" ? "Introducir la contraseña" : "" }
                             </div>
                         </div>
-                        <input 
-                            className={classes.input} 
-                            type="text" 
-                            placeholder='Enter password' 
-                            onChange={handlePasswordChange}    
-                        />
+                        { locale === "EN" ? 
+                            <input 
+                                className={classes.input} 
+                                type="password" 
+                                placeholder='Enter password' 
+                                onChange={handlePasswordChange}
+                            /> :
+                            locale === "ES" ? 
+                            <input 
+                                className={classes.input} 
+                                type="password" 
+                                placeholder='Introducir la contraseña' 
+                                onChange={handlePasswordChange}
+                            /> : ""
+                        }
                     </div>
                     <div className={classes.full_name}>
                         <div className={classes.first_field}>
                             <div className={classes.first_name_field}>
                                 <FaUserAlt />
                                 <div className={classes.first_name}>
-                                    First Name
+                                    { locale === "EN" ? "First Name" : locale=== "ES" ? "Primer Nombre" : "" }
                                 </div>
                             </div>
                             <div className={classes.first_name_input}>
@@ -141,7 +156,7 @@ const SignUp = () => {
                             <div className={classes.first_name_field}>
                                 <FaUserAlt />
                                 <div className={classes.first_name}>
-                                    Last Name
+                                    { locale === "EN" ? "Last Name" : locale === "ES" ? "Apellido" : "" }
                                 </div>
                             </div>
                             <div className={classes.first_name_input}>
@@ -159,7 +174,7 @@ const SignUp = () => {
                             <div className={classes.first_name_field}>
                                 <BiWorld />
                                 <div className={classes.country_name}>
-                                    Country of Residence
+                                    { locale === "EN" ? "Country of Residence" : locale === "ES" ? "Pais de residencia" : "" }
                                 </div>
                             </div>
                             <div className={classes.first_name_input}>
@@ -175,7 +190,7 @@ const SignUp = () => {
                             <div className={classes.first_name_field}>
                                 <FaUserAlt />
                                 <div className={classes.country_name}>
-                                    Zip/Postal Code
+                                    { locale === "EN" ? "Zip/Postal Code" : locale === "ES" ? "Codigo postal" : "" }
                                 </div>
                             </div>
                             <div className={classes.first_name_input}>
@@ -194,14 +209,28 @@ const SignUp = () => {
                             className={classes.signUp_btn}
                             onClick={handleSignUp}
                         >
-                            Sign Up
+                            { locale === "EN" ? "Sign up" : locale === "ES" ? "Senal Arriba" : "" }
                         </button>
                     </div>
                     <div className={classes.comment}>
-                        By continuing past this page, you agree to the <span className={classes.font_red}>Terms of Use</span> and understand that information will be used as described in our <sapn className={classes.font_red}>Privacy Policty.</sapn>
+                    { locale === "EN" ? "By continuing past this page, you agree to the " : locale ==="ES" ? "" : "Al continuar más allá de esta pagina, usted acepta los" }
+                        <span className={classes.font_red}>
+                            { locale === "EN" ? "Terms of Use" : locale === "ES" ? "Terminos de Uso" : "" }
+                        </span> 
+                        { locale === "EN" ? "and understand that information will be used as described in our" : locale === "ES" ? "y entiendo que la información será utilizada como se describe en nuestro" : "" } 
+                        <sapn className={classes.font_red}>{ locale === "EN" ? "Privacy Policty." : locale === "ES" ? "Politica de privacidad." : "" }</sapn>
                     </div>
                     <div className={classes.signUp_field}>
-                        have a account? <a href='/signIn' className={classes.footer_signUp_btn}>Sign In</a>
+                        { locale === "EN" ? "Have a account?" : locale === "ES" ? "Tienes una cuenta?" : "" } 
+                        <a 
+                            onClick={() => {
+                                router.push('/signIn', '/signIn', { locale: locale })
+                            }}
+                            locale={locale}
+                            className={classes.footer_signUp_btn}
+                        >
+                            { locale === "EN" ? "Sign In" : locale === "Es" ? "Señal En" : "" }
+                        </a>
                     </div>
                 </div>
             </div>
@@ -211,10 +240,12 @@ const SignUp = () => {
                 </div>                
                 <div className={classes.rigth_body}>
                     <div className={classes.rigth_title}>
-                        Your All-Access Pass
+                        { locale === "EN" ? "Your All-Access Pass" : locale === "ES" ? "Su pase de acceso completo" : "" }
                     </div>
                     <div className={classes.right_text}>
-                        This is it - millions of live events. Up to the minute alerts for your favorite artists and teams and, of course, always safe, secure ticketing.
+                        { locale === "EN" ? "This is it - millions of live events. Up to the minute alerts for your favorite artists and teams and, of course, always safe, secure ticketing." :
+                            locale === "ES" ? "Esto es todo: millones de eventos en vivo.  Alertas actualizadas de tus artistas y equipos favoritos y, por supuesto, emisión de entradas siempre segura." : ""
+                        }
                     </div>
                 </div>
             </div>

@@ -2,13 +2,13 @@ import Head from 'next/head';
 import Layout from '../modules/layout/Layout';
 import Header from "../components/home/homepage1/Header"
 import HeaderBody from "../components/home/homepage1/headerBody";
-import AmericanExpress from "../components/home/homepage1/americanExpress";
-import BrowseCategory from "../components/home/homepage1/browseCategory";
+// import AmericanExpress from "../components/home/homepage1/americanExpress";
+// import BrowseCategory from "../components/home/homepage1/browseCategory";
 import TopSelling from "../components/home/homepage1/topSelling";
 import Sport from "../components/home/homepage1/sports";
-import ArtsTheater from "../components/home/homepage1/artsTheater";
-import Family from "../components/home/homepage1/family";
-import DiscoverMoreEvent from "../components/home/homepage1/discoverMoreEvents";
+// import ArtsTheater from "../components/home/homepage1/artsTheater";
+// import Family from "../components/home/homepage1/family";
+// import DiscoverMoreEvent from "../components/home/homepage1/discoverMoreEvents";
 import { useEffect, useState } from 'react';
 import { getFeaturedVenues } from '../data';
 import { getFeaturedArtists, getHeaderEvents, getBrowseCategory, getTopSelling, getSport, getArtsTheater, getFamily, getDiscoverMoreEvent, getAmericanExpress } from '../utils/db';
@@ -23,6 +23,7 @@ export default function HomePage(props) {
       <Head>
         <title>boletospro.com</title>
         <link rel='icon' href='/favicon.ico' />
+        <link rel='stylesheet' href='https://www.jqueryscript.net/demo/jQuery-Plugin-For-Country-Selecter-with-Flags-flagstrap/dist/css/flags.css'></link>
       </Head>
       <main>
         <Layout>

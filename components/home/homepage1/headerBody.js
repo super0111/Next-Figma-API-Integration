@@ -1,13 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { useRouter } from "next/router"
 import classes from './headerBody.module.css';
 import { BiSearch } from 'react-icons/bi';
 import PlaceOutlined from '@material-ui/icons/PlaceOutlined';
+import { Context } from "./../../AppContext";
 
 const HeaderBody = (props) => {
+  const router = useRouter()
+  const { locale } = useRouter()
   const { events } = props;
   const [rotating, setRotating] = useState(true)
   const [state, setState] = useState(0);
   const [event, setEvent] = useState(events[0]);
+  const { countryValue, setCountryValue } = useContext(Context);
 
   useEffect(() => {
     if (!rotating) return;
@@ -29,14 +34,18 @@ const HeaderBody = (props) => {
   return (
     <div className={classes.headerBody}>
       {event ? (
-        <a href={`/events/${event.artist.id}/${event.id}`}>
+        <a 
+          onClick={() => {
+            router.push(`/events/${event.artist.id}/${event.id}`, `/events/${event.artist.id}/${event.id}`, { locale: locale })
+          }}
+          locale={locale}
+        >
           <div className={classes.headerBodyBar}>
             <img className={classes.headerBodyImg} src={event.bigImage} />
-            {/* <Image src={event.bigImage} height={} */}
             <div className={classes.headerTextField}>
               <h1 className={classes.headerTitle}>{event.title}</h1>
               <h2 className={classes.headerText}>{event.text}</h2>
-              <button className={classes.headerBtn}>See Tickets</button>
+              <button className={classes.headerBtn}>{ locale === "EN" ? "See Tickets" : locale === "ES" ? "Ver entradas" : "" }</button>
             </div>
           </div>
         </a>
@@ -72,11 +81,11 @@ const HeaderBody = (props) => {
       </div>
       <div className={classes.headerFooter}>
         <h3 className={classes.headerFooterTitle}>
-          Let&apos;s Make Live Happen
+          { locale === "EN" ? "Let's Make Live Happen" : locale === "ES" ? "Hagamos que la vida suceda" : "" }
         </h3>
         <span className={classes.headerFooterText}>
-          Shop millions of live events and discover can&apos;t-miss concerts,
-          games, theater and more.
+          { locale === "EN" ? "Shop millions of live events and discover can't-miss concerts, games, theater and more." 
+          : locale === "ES" ? "Compre millones de eventos en vivo y descubra conciertos, juegos, teatro y más que no se puede perder." : "" }
         </span>
         <div className={classes.headerToolBar}>
           <div className={classes.cityInputField}>
@@ -91,22 +100,30 @@ const HeaderBody = (props) => {
           <div className={classes.borderVertical}></div>
           <div className={classes.selectField}>
             <select className={classes.select}>
-              <option className={classes.option} value='0'>All Dates</option>
-              <option className={classes.option} value='1'>This Weekend</option>
-              <option className={classes.option} value='2'>Date Range</option>
+              <option className={classes.option} value='0'>{locale === "EN" ? "All Dates" : locale === "ES" ? "Todas fechas" : ""}</option>
+              <option className={classes.option} value='1'>{locale === "EN" ? "This Weekend" : locale === "ES" ? "Este fin de semana" : ""}</option>
+              <option className={classes.option} value='2'>{locale === "EN" ? "Date Range" : locale === "ES" ? "Rango de fechas" : ""}</option>
             </select>
           </div>
           <div className={classes.borderVertical}></div>
           <div className={classes.searchBarField}>
             <div className={classes.searchBar}>
               <BiSearch color='#8a8989' size={18} />
-              <input
-                className={classes.searchBarInput}
-                type='text'
-                placeholder='Search for artists, venues and events'
-              />
+              { locale === "EN" ? 
+                <input
+                  className={classes.searchBarInput}
+                  type='text'
+                  placeholder='Search for artists, venues and events'
+                /> :
+                locale === "ES" ? 
+                <input
+                  className={classes.searchBarInput}
+                  type='text'
+                  placeholder='Busqueda de artistas, lugares y eventos'
+                /> : ""
+              }
             </div>
-            <div className={classes.searchBtn}>Search</div>
+            <div className={classes.searchBtn}>{locale === "EN" ? "Search" : locale === "ES" ? "Busqueda" : ""}</div>
           </div>
         </div>
 
@@ -126,11 +143,11 @@ const HeaderBody = (props) => {
             <div className={classes.selectField}>
               <select className={classes.select}>
                 <option style={{ color: 'blue' }} value='0'>
-                  All Dates
+                  {locale === "EN" ? "All Dates" : locale === "ES" ? "Todas fechas" : ""}
                 </option>
-                <option value='1'>Date1</option>
-                <option value='2'>Date2</option>
-                <option value='3'>Date3</option>
+                <option value='1'>{locale === "EN" ? "Date1" : locale === "ES" ? "Fecha1" : ""}</option>
+                <option value='2'>{locale === "EN" ? "Date2" : locale === "ES" ? "Fecha2" : ""}</option>
+                <option value='3'>{locale === "EN" ? "Date3" : locale === "ES" ? "Fecha3" : ""}</option>
               </select>
             </div>
           </div>
@@ -138,13 +155,21 @@ const HeaderBody = (props) => {
             <div className={classes.responsiveSearchBar}>
               <div className={classes.searchBar}>
                 <BiSearch color='#8a8989' size={18} />
-                <input
-                  className={classes.searchBarInput}
-                  type='text'
-                  placeholder='Search for artists, venues and events'
-                />
+                { locale === "EN" ? 
+                  <input
+                    className={classes.searchBarInput}
+                    type='text'
+                    placeholder='Search for artists, venues and events'
+                  /> :
+                  locale === "ES" ? 
+                  <input
+                    className={classes.searchBarInput}
+                    type='text'
+                    placeholder='Busqueda de artistas, lugares y eventos'
+                  /> : ""
+                }
               </div>
-              <div className={classes.searchBtn}>Search</div>
+              <div className={classes.searchBtn}>{locale === "EN" ? "Search" : locale === "ES" ? "Búsqueda" : ""}</div>
             </div>
           </div>
         </div>

@@ -5,9 +5,11 @@ import Skeleton from 'react-loading-skeleton';
 import { getVenueSetupByEvent } from '../../../data';
 import TicketsList from './ticketsList';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useRouter } from 'next/router';
 
 export default function TicketSelector(props) {
   const { eventid } = props;
+  const { locale } = useRouter();
   const [setup, setSetup] = useState();
   const tickets = [];
 
@@ -38,12 +40,18 @@ export default function TicketSelector(props) {
   return (
     <div className={classes.sel}>
       {setup ? (
+        locale === "EN" ?
         <Select className={classes.selectField} placeholder='Number of Tickets...' options={tickets} onChange={handleTicketsChange} />
+        : locale === "ES" ? 
+        <Select className={classes.selectField} placeholder='Número de entradas...' options={tickets} onChange={handleTicketsChange} /> : ""
       ) : (
         <Skeleton className={classes.selectField} height={38} />
       )}
       {setup ? (
+        locale === "EN" ?
         <Select className={classes.selectField1} placeholder='Select Zone...' options={setup.zones} onChange={handleOptionChange} />
+        : locale === "ES" ?
+        <Select className={classes.selectField1} placeholder='Seleccionar Zone...' options={setup.zones} onChange={handleOptionChange} /> : ""
       ) : (
         <Skeleton className={classes.selectField1} height={38} />
       )}

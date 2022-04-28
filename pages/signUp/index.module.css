@@ -17,6 +17,7 @@
    margin-top: 27px;
    display: flex;
    justify-content: center;
+   cursor: pointer;
 }
 .logo_img {
     width: 340px;

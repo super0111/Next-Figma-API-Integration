@@ -3,6 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import classes from "./multiRangeSlider.module.css";
 import './multiRangeSlider.module.css'
+import { useRouter } from "next/router";
 
 const MultiRangeSlider = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState(min);

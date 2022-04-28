@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useState } from 'react';
 import { ShopContextProvider } from '../context/shopContext';
+import { AppProvider } from '../components/AppContext';
 import {  SessionProvider, useSession, signIn } from 'next-auth/react';
 
 export default function MyApp({ 
@@ -16,13 +17,15 @@ export default function MyApp({
 		<SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
         <ShopContextProvider>
-        {Component.auth ? (
-        <Auth>
-          <Component {...pageProps} />
-        </Auth>
-      ) : (
-        <Component {...pageProps} />
-      )}
+          <AppProvider>
+            {Component.auth ? (
+              <Auth>
+                <Component {...pageProps} />
+              </Auth>
+            ) : (
+              <Component {...pageProps} />
+            )}
+          </AppProvider>
         </ShopContextProvider>
         <ReactQueryDevtools initialIsOpen />
       </QueryClientProvider>
@@ -33,18 +36,14 @@ export default function MyApp({
 function Auth({ children }) {
   const { data: session, status, loading } = useSession({required: true})
   const isUser = !!session?.user 
-  console.log(session)// -> undefined in server- but correct in client-console
   React.useEffect(() => {
-      if (loading) return   // Do nothing while loading
+      if (loading) return 
       if (!isUser) signIn()
   }, [isUser, loading])
 
   if (isUser) {
     return children
   }
-
-  // Session is being fetched, or no user.
-  // If no user, useEffect() will redirect.
   return <div>Loading...</div>
 }
 

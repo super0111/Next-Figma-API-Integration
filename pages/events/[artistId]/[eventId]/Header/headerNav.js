@@ -1,28 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
 import NavMenuDraw from './navMenuDraw';
 import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
 import classes from './headerNav.module.css';
 import { BiSearch } from 'react-icons/bi';
+import { VscGlobe } from "react-icons/vsc";
+import { Context } from "./../../../../../components/AppContext"
+import CountryModal from "./../../../../../components/home/homepage1/Header/CountryModal"
 
 const sections1 = [
-  { title: 'Concerts', url: '#' },
-  { title: 'Sports', url: '#' },
-  { title: 'Arts & Theater', url: '#' },
-  { title: 'Family', url: '#' },
-  { title: 'More', url: '#' },
+  { title: 'Concerts', url: '#', locale: "EN" },
+  { title: 'Sports', url: '#', locale: "EN" },
+  { title: 'Arts & Theater', url: '#', locale: "EN" },
+  { title: 'Family', url: '#', locale: "EN" },
+  { title: 'More', url: '#', locale: "EN" },
+  { title: 'Conciertos', url: '#', locale: "ES" },
+  { title: 'Deportes', url: '#', locale: "ES" },
+  { title: 'Artes and Teatro', url: '#', locale: "ES" },
+  { title: 'Familia', url: '#', locale: "ES" },
+  { title: 'Mas', url: '#', locale: "ES" },
 ];
 const sections2 = [
-  { title: 'Sign In', url: '#' },
-  { title: 'Sell', url: '#' },
-  { title: 'Git Cards', url: '#' },
-  { title: 'Help', url: '#' },
+  { title: 'Sign In', url: '#', locale: "EN" },
+  { title: 'Sell', url: '#', locale: "EN" },
+  { title: 'Git Cards', url: '#', locale: "EN" },
+  { title: 'Help', url: '#', locale: "EN" },
+  { title: 'Señal En', url: '#', locale: "ES" },
+  { title: 'Vender', url: '#', locale: "ES" },
+  { title: 'Tarjetas Git', url: '#', locale: "ES" },
+  { title: 'Ayudar', url: '#', locale: "ES" },
 ];
 
 const HeaderNav = (props) => {
   const { specialBg } = props
-  
+  const { locale } = useRouter()
+  const { countryValue } = useContext(Context);
+  console.log("countryValue", countryValue)
+
   const [scroll, setScroll] = useState(false);
+  const [ modalIsShow, setModalIsShow ] = useState(false)
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -30,15 +47,19 @@ const HeaderNav = (props) => {
     });
   }, []);
 
+  const handleCountryModalShow = () => {
+    setModalIsShow(true)
+  }
+
   return (
-    <>
+    <div className={classes.hearderNav}>
       <div className={scroll ? classes.headerToolScroll : classes.headerTool}>
         <Toolbar component='nav' variant='dense'>
-          {sections1.map((section1) => (
+          {sections1.filter(p => p.locale === locale).map((section1, i) => (
             <Link
               style={{ textDecoration: 'none' }}
               noWrap
-              key={section1.title}
+              key={i}
               href={section1.url}
               className={classes.navToolbarLink}
             >
@@ -55,21 +76,12 @@ const HeaderNav = (props) => {
           </a>
         </div>
         <div className={classes.rightSideMenu}>
-          {/* <div className={classes.navbarSearch}>
-          // <span className="fa fa-search"></span>
-          <BiSearch color='white' size={20} />
-          <input
-            type='text'
-            className={classes.navbarSearchInput}
-            placeholder='Find of millions of live experiences'
-          />
-        </div> */}
           <Toolbar component='nav' variant='dense'>
-            {sections2.map((section2) => (
+            {sections2.filter(p => p.locale === locale).map((section2, i) => (
               <Link
                 style={{ textDecoration: 'none' }}
                 noWrap
-                key={section2.title}
+                key={i}
                 href={section2.url}
                 className={classes.navToolbarLink}
               >
@@ -77,6 +89,14 @@ const HeaderNav = (props) => {
               </Link>
             ))}
           </Toolbar>
+          <div className={classes.border_right}></div>
+          { countryValue === "US" ? 
+            <img src='/images/flags/USA_Flag.png' className={classes.flag_img} onClick={handleCountryModalShow}/> : countryValue === "MX" ?
+            <img src='/images/flags/Mexico_flag.png' className={classes.flag_img} onClick={handleCountryModalShow} /> :
+            <div className={classes.countrySelect} onClick={handleCountryModalShow}>
+              <VscGlobe size={20} color="white" />
+            </div>
+          }
         </div>
       </div>
       <div
@@ -94,11 +114,11 @@ const HeaderNav = (props) => {
           />
         </div>
         <div className={classes.navbarSingIn}>
-          {sections2.map((section2) => (
+          {sections2.filter(p => p.locale === locale).map((section2, i) => (
             <Link
               style={{ textDecoration: 'none' }}
               noWrap
-              key={section2.title}
+              key={i}
               href={section2.url}
               className={classes.navResponsiveToolbarLink}
             >
@@ -113,11 +133,14 @@ const HeaderNav = (props) => {
             href=''
             className={classes.navResponsiveToolbarLink}
           >
-            SignIn
+            { locale === "EN" ? "SignIn" : locale === "ES" ? "Señal En" : "" }
           </Link>
         </div>
       </div>
-    </>
+      { modalIsShow === true ?
+        <CountryModal modalIsShow={modalIsShow} setModalIsShow={setModalIsShow}  /> : ""
+      }
+    </div>
   );
 };
 export default HeaderNav;

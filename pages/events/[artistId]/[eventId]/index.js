@@ -10,9 +10,12 @@ import ArtistBio from '../../../../components/artists/ArtistBio';
 import { useQuery } from 'react-query';
 import { getEventDates, getTickets, getFamilyById, getFamily } from '../../../../utils/db';
 import { useState } from 'react';
+
 export default function EventPage(props) {
   const { event, artistDetails, Families } = props;
   const router = useRouter();
+  const { locale } = useState()
+  console.log("envet locale", locale)
   const [state, setState] = useState("Events");
   // const eventsPage = !router.asPath.match('#bio');
 
@@ -23,8 +26,8 @@ export default function EventPage(props) {
     }
   );
 
-  if (isLoading) return <div>React Skelleton should be here</div>;
-  if (isError) return <div>Error component should be here</div>;
+  if (isLoading) return <div>{ locale === "EN" ? "React Skelleton should be here" : locale === "ES" ? "Reaccionar Skelleton deberia estar aquí" : "" }</div>;
+  if (isError) return <div>{ locale === "EN" ? "Error component should be here" : locale === "ES" ? "El componente de error deberia estar aquí" : ""}</div>;
 
   return (
     <Layout>
@@ -34,7 +37,7 @@ export default function EventPage(props) {
         <EventsAllConcerts eventDates={data} />
         ) : state == "Reviews" ? "" : (
           <ArtistBio artistDetails={artistDetails} />
-      ) }
+      )}
       <EventsEricChurch />
       <EventsFans Families = { Families } />
     </Layout>

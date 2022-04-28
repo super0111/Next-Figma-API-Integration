@@ -1,51 +1,79 @@
 
   import classes from './index.module.css'
+  import { useRouter } from 'next/router'
 
   const helpfulLinks = [
-    { title: 'My Account' },
-    { title: 'Ticket Your Event' },
-    { title: 'Refunds and Exchanges' },
-    { title: 'Get Help' },
-    { title: 'Sell' },
-    { title: 'Gift Cards' },
-    { title: 'N.Y Registered Brokers' },
-    { title: 'Do Not Sell My Information' },
+    { title: 'My Account', locale: "EN", },
+    { title: 'Ticket Your Event', locale: "EN", },
+    { title: 'Refunds and Exchanges', locale: "EN", },
+    { title: 'Get Help', locale: "EN", },
+    { title: 'Sell', locale: "EN", },
+    { title: 'Gift Cards', locale: "EN", },
+    { title: 'N.Y Registered Brokers', locale: "EN", },
+    { title: 'Do Not Sell My Information', locale: "EN", },
+    { title: 'My Account', locale: "ES", },
+    { title: 'Ticket Your Event', locale: "ES", },
+    { title: 'Refunds and Exchanges', locale: "ES", },
+    { title: 'Get Help', locale: "ES", },
+    { title: 'Sell', locale: "ES", },
+    { title: 'Gift Cards', locale: "ES", },
+    { title: 'N.Y Registered Brokers', locale: "ES", },
+    { title: 'Do Not Sell My Information', locale: "ES", },
   ]
 const ourNetworks = [
-    { title: 'Live Nation' },
-    { title: 'House of Blues' },
-    { title: 'Front Gate Tickets' },
-    { title: 'Ticket Web' },
-    { title: 'universe' },
-    { title: 'NFL TicketWeb' },
-    { title: 'NBATICKETS.com' },
-    { title: 'NHL Ticket Exchange' },
+    { title: 'Live Nation', locale: "EN", },
+    { title: 'House of Blues', locale: "EN", },
+    { title: 'Front Gate Tickets', locale: "EN", },
+    { title: 'Ticket Web', locale: "EN", },
+    { title: 'universe', locale: "EN", },
+    { title: 'NFL TicketWeb', locale: "EN", },
+    { title: 'NBATICKETS.com', locale: "EN", },
+    { title: 'NHL Ticket Exchange', locale: "EN", },
+    { title: 'Live Nation', locale: "ES", },
+    { title: 'House of Blues', locale: "ES", },
+    { title: 'Front Gate Tickets', locale: "ES", },
+    { title: 'Ticket Web', locale: "ES", },
+    { title: 'universe', locale: "ES", },
+    { title: 'NFL TicketWeb', locale: "ES", },
+    { title: 'NBATICKETS.com', locale: "ES", },
+    { title: 'NHL Ticket Exchange', locale: "ES", },
 ]
 const aboutUss = [
-    { title: 'Whoe We Are' },
-    { title: 'Ticketmaster Blog' },
-    { title: 'Ticketing 101' },
-    { title: 'Privacy Policy' },
-    { title: 'Work With Us' },
-    { title: 'Across the Globe' },
-    { title: 'Innovation' },
+    { title: 'Whoe We Are', locale: "EN", },
+    { title: 'Ticketmaster Blog', locale: "EN", },
+    { title: 'Ticketing 101', locale: "EN", },
+    { title: 'Privacy Policy', locale: "EN", },
+    { title: 'Work With Us', locale: "EN", },
+    { title: 'Across the Globe', locale: "EN", },
+    { title: 'Innovation', locale: "EN", },
+    { title: 'Whoe We Are', locale: "ES", },
+    { title: 'Ticketmaster Blog', locale: "ES", },
+    { title: 'Ticketing 101', locale: "ES", },
+    { title: 'Privacy Policy', locale: "ES", },
+    { title: 'Work With Us', locale: "ES", },
+    { title: 'Across the Globe', locale: "ES", },
+    { title: 'Innovation', locale: "ES", },
 ]
 const friendsPartners = [
-    { title: 'American Express' },
-    { title: 'Allianz' },
-    { title: 'AWS' },
+    { title: 'American Express', locale: "EN", },
+    { title: 'Allianz', locale: "EN", },
+    { title: 'AWS', locale: "EN", },
+    { title: 'American Express', locale: "ES", },
+    { title: 'Allianz', locale: "ES", },
+    { title: 'AWS', locale: "ES", },
 ]
 
 export default function Footer() {
+    const { locale } = useRouter()
     return (
         <div className={`${classes.footer} ${classes.footerBg}`}>
             <div className={classes.footerItemField}>
                 <div className={classes.footerItem}>
                     <div className={classes.footerTitlefield}>
-                        <h5 className={classes.footerTitle}>Helpful Links</h5>
+                        <h5 className={classes.footerTitle}>{ locale === "EN" ? "Helpful Links" : locale ==="ES" ? "Enlaces Tiles" : "" }</h5>
                         <img className={classes.footerTitleLine} src="/images/bottom-line.png" />
                     </div>
-                    {helpfulLinks.map((helpfulLink) => (
+                    {helpfulLinks.filter(p => p.locale === locale).map((helpfulLink) => (
                         <div key={helpfulLink.title} className={classes.footerTextItem}>
                             <img className={classes.footerTextIcon} src="/images/select-allow.png" />
                             <span className={classes.footerText}>{helpfulLink.title}</span>
@@ -54,10 +82,10 @@ export default function Footer() {
                 </div>
                 <div className={classes.footerItem}>
                     <div className={classes.footerTitlefield}>
-                        <h5 className={classes.footerTitle}>Our Network</h5>
+                        <h5 className={classes.footerTitle}>{ locale === "EN" ? "Our Network" : locale === "ES" ? "Nuestra Red" : "" }</h5>
                         <img className={classes.footerTitleLine} src="/images/bottom-line.png" />
                     </div>
-                    {ourNetworks.map((ourNetwork) => (
+                    {ourNetworks.filter(p => p.locale === locale).map((ourNetwork) => (
                         <div key={ourNetwork.title} className="d-flex jsutify-contnet-start align-items-center cursor-pointer footer-text-item">
                             <img className={classes.footerTextIcon} src="/images/select-allow.png" />
                             <span className={classes.footerText}>{ourNetwork.title}</span>
@@ -66,10 +94,10 @@ export default function Footer() {
                 </div>
                 <div className={classes.footerItem}>
                     <div className={classes.footerTitlefield}>
-                        <h5 className={classes.footerTitle}>About Us</h5>
+                        <h5 className={classes.footerTitle}>{ locale === "EN" ? "About Us" : locale === "ES" ? "Sobre nosotras" : "" }</h5>
                         <img className={classes.footerTitleLine} src="/images/bottom-line.png" />
                     </div>
-                    {aboutUss.map((aboutUs) => (
+                    {aboutUss.filter(p => p.locale === locale).map((aboutUs) => (
                         <div key={aboutUs.title} className="d-flex jsutify-contnet-start align-items-center cursor-pointer footer-text-item">
                             <img className={classes.footerTextIcon} src="/images/select-allow.png" />
                             <span className={classes.footerText}>{aboutUs.title}</span>
@@ -78,17 +106,17 @@ export default function Footer() {
                 </div>
                 <div className={classes.footerItem}>
                     <div className={classes.footerTitlefield}>
-                        <h5 className={classes.footerTitle}>Friends & Partners</h5>
+                        <h5 className={classes.footerTitle}>{ locale === "EN" ? "Friends & Partners" : locale === "ES" ? "Amigos and Socios" : "" }</h5>
                         <img className={classes.footerTitleLine} src="/images/bottom-line.png" />
                     </div>
-                    {friendsPartners.map((friendsPartner) => (
+                    {friendsPartners.filter(p => p.locale === locale).map((friendsPartner) => (
                         <div key={friendsPartner.title} className="d-flex jsutify-contnet-start align-items-center cursor-pointer footer-text-item">
                             <img className={classes.footerTextIcon} src="/images/select-allow.png" />
                             <span className={classes.footerText}>{friendsPartner.title}</span>
                         </div>
                     ))}
                     <div className="d-flex justify-content-start align-items-center footer-ourApp-text-title">
-                        <h5 className={classes.footerTitle}>Get Our App</h5>
+                        <h5 className={classes.footerTitle}>{ locale === "EN" ? "Get Our App" : locale === "ES" ? "Obtenga Nuestra Aplicación" : "" }</h5>
                         <img className={classes.ourAppIcon} src="/images/apple.png" />
                         <img className={classes.ourAppIcon} src="/images/Unity.png" />
                     </div>
@@ -107,13 +135,16 @@ export default function Footer() {
             </div>
             <img className={classes.divider} src="/images/Rectangle 40.png" />
             <div className={classes.footerBottom}>
-                <span className={classes.footerBottomText}>By continuing past this page, you agree to our Terms of Use.</span>
+                <span className={classes.footerBottomText}>
+                    { locale === "EN" ? "By continuing past this page, you agree to our Terms of Use." 
+                    : locale === "ES" ? "Al continuar más allá de esta pagina, acepta nuestros Terminos de uso." : ""}
+                </span>
                 <div className={classes.dFlex}>
-                    <span className={classes.footerBottomText}>@Ticketmaster 2021</span>
+                    <span className={classes.footerBottomText}>{ locale === "EN" ? "@Ticketmaster 2021" : locale === "ES" ? "@TicketMaster 2021" : ""}</span>
                     <img className={classes.borderVertical} src="/images/Rectangle 42.png" />
                     <div className={classes.dFlex}>
                         <img className={classes.flagIcon} src="/images/image 2.png" />
-                        <span className={classes.footerBottomText}>United States</span>
+                        <span className={classes.footerBottomText}>{ locale === "EN" ? "United States" : locale === "ES" ? "Estados Unidos" : "" }</span>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,11 @@
 import classes from './ticketsListBody.module.css';
 import React, {useState, useEffect} from 'react';
+import { useRouter } from 'next/router';
 
 const Lowest = (props) => {
     const { lowestLists, selectValue, ticketCount } = props
-
+    const { locale } = useRouter()
+    const router = useRouter()
     if(selectValue !== undefined) {
         lowestLists = lowestLists.filter((item) => item.comment == selectValue);
     }
@@ -14,8 +16,15 @@ const Lowest = (props) => {
     return (
         <div className={classes.listHeight}>
             {
-                lowestLists.map((lowestList, i) => (
-                    <a href={`/tickets/${lowestList.ticketId}`} key={i} className={classes.ticketsItem}>
+                lowestLists.filter(p => p.locale === locale).map((lowestList, i) => (
+                    <a 
+                        onClick={() => {
+                            router.push(`/tickets/${lowestList.ticketId}`, `/tickets/${lowestList.ticketId}`, { locale: locale })
+                        }}
+                        locale={locale}
+                        key={i} 
+                        className={classes.ticketsItem}
+                    >
                         <div className={`${classes.dFlex} ${classes.width100}`}>
                             <div className={classes.dFlexColumn}>
                                 <span className={classes.listSec}>{lowestList.title}, {lowestList.row} Row</span>
@@ -36,7 +45,8 @@ const Lowest = (props) => {
 
 const Section = (props) => {
     const { sectionLists, selectValue, ticketCount } = props
-
+    const { locale } = useRouter()
+    const router = useRouter()
     if(selectValue !== undefined) {
         sectionLists = sectionLists.filter((item) => item.comment == selectValue);
     }
@@ -45,8 +55,15 @@ const Section = (props) => {
     }
     return (
         <div className={classes.listHeight}>
-                { sectionLists.map((sectionList) => (
-                    <a href={`/tickets/${sectionList.ticketId}`} key={sectionList.title} className={classes.ticketsItem}>
+                { sectionLists.filter(p => p.locale === locale).map((sectionList) => (
+                    <a 
+                        onClick={() => {
+                            router.push(`/tickets/${sectionList.ticketId}`, `/tickets/${sectionList.ticketId}`, { locale: locale })
+                        }}
+                        locale={locale}
+                        key={sectionList.title} 
+                        className={classes.ticketsItem}
+                    >
                         <div className={`${classes.dFlex} ${classes.width100}`}>
                             <div className={classes.dFlexColumn}>
                                 <span className={classes.listSec}>{sectionList.title}, {sectionList.row} Row</span>
@@ -66,6 +83,7 @@ const Section = (props) => {
 
 
 const TicketsListBody = (props) => {
+    const { locale } = useRouter();
     const selectValue = props.selectValue?.label;
     const ticketCount = props.ticketCount?.value;
     const { lowestLists, sectionLists } = props
@@ -74,11 +92,11 @@ const TicketsListBody = (props) => {
         <div className={classes.ticketsListBody}>
             <div className={classes.TicketsListHeader}>
                 <div onClick={() => setStatus("lowest")} className={classes.left}>
-                    <span className={classes.lowestTitle}>Lowest Price</span>
+                    <span className={classes.lowestTitle}>{ locale === "EN" ? "Lowest Price" : locale === "ES" ? "El precio mas bajo" : "" }</span>
                     <div className={ status==="lowest" ? classes.activeBorder : classes.ListHeaderborder }></div>    
                 </div>
                 <div onClick={() => setStatus("section")} className={classes.right}>
-                    <span className={classes.sectionTitle}>Section</span>
+                    <span className={classes.sectionTitle}>{ locale === "EN" ? "Section" : locale === "ES" ? "Sección" : "" }</span>
                     <div className={ status==="section" ? classes.activeBorder : classes.ListHeaderborder }></div> 
                 </div>
             </div>

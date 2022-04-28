@@ -1,14 +1,15 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useShopContext } from '../../context/shopContext';
 import classes from './timerBar.module.css';
+import { Context } from "./../../components/AppContext"
 
 export default function timerBar() {
   const { locale } = useRouter()
   const { state, funcs } = useShopContext();
   const [elapsed, setElapsed] = useState(0);
   const startTime = state?.session?.startTime;
-
+  const { lang_value } = useContext(Context)
   if (!startTime) return null;
 
   setTimeout(() => {
@@ -30,10 +31,10 @@ export default function timerBar() {
       {state.stage != 'captured' && (
         <div className={classes.time}>
           {diff <= 0 ? (
-            <span>{ locale === "EN" ? "Timed out!" : locale === "ES" ? "Desconectado!" : "" }</span>
+            <span>{lang_value["tickets"]["timeout"][locale]}</span>
           ) : (
             <span>
-              { locale === "EN" ? "Time remaining" : locale === "ES" ? "Tiempo restante" : "" }: {mins} : {secs > 9 ? secs : '0' + secs}
+             {lang_value["tickets"]["timeloading"][locale]}: {mins} : {secs > 9 ? secs : '0' + secs}
             </span>
           )}
         </div>

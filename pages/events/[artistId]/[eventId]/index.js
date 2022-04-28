@@ -26,8 +26,8 @@ export default function EventPage(props) {
     }
   );
 
-  if (isLoading) return <div>{ locale === "EN" ? "React Skelleton should be here" : locale === "ES" ? "Reaccionar Skelleton deberia estar aquí" : "" }</div>;
-  if (isError) return <div>{ locale === "EN" ? "Error component should be here" : locale === "ES" ? "El componente de error deberia estar aquí" : ""}</div>;
+  if (isLoading) return <div>{lang_value["eventsHome"]["loading"][locale]}</div>;
+  if (isError) return <div>{lang_value["eventsHome"]["loadingErr"][locale]}</div>;
 
   return (
     <Layout>

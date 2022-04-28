@@ -2,41 +2,44 @@ import { FaListUl, FaCalendarAlt, FaChevronDown } from "react-icons/fa";
 import classes from './eventsAllConcerts.module.css';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useContext } from "react";
+import {Context} from "./../../../../components/AppContext";
 
 const EventsAllConcerts = (props) => {
     const {eventDates} = props
     const router = useRouter()
     const { locale } = useRouter()
+    const { lang_value } = useContext(Context)
     return (
         <div className={classes.eventsBody}>
             <div className={classes.concertsHeader}>
                 <div className={classes.concertsTitle}>
-                    <h4 className={classes.concertsTitleH4}>{ locale === "EN" ? "No Concerts Near" : locale === "Es" ? "No hay conciertos cerca" : "" }</h4>
-                    <span className={classes.concertsTitleSpan}>{ locale === "EN" ? "(select your city)" : locale === "ES" ? "(seleccione su ciudad)" : "" }</span>
+                    <h4 className={classes.concertsTitleH4}>{lang_value["eventsHome"]["noConcerts"][locale]}</h4>
+                    <span className={classes.concertsTitleSpan}>{lang_value["eventsHome"]["selectCity"][locale]}</span>
                 </div>
                 <div className={classes.dFlex}>
                     <div>
                         <select className={classes.select}>
-                            <option value="0">{ locale === "EN" ? "Select your dates" : locale === "ES" ? "Seleccione sus fechas" : "" }</option>
-                            <option value="1">{ locale === "EN" ? "Date" : locale === "ES" ? "Fechas" : "" }1</option>
-                            <option value="2">{ locale === "EN" ? "Date" : locale === "ES" ? "Fechas" : "" }2</option>
-                            <option value="3">{ locale === "EN" ? "Date" : locale === "ES" ? "Fechas" : "" }3</option>
+                            <option value="0">{lang_value["eventsHome"]["selectDates"][locale]}</option>
+                            <option value="1">{lang_value["eventsHome"]["date"][locale]}1</option>
+                            <option value="2">{lang_value["eventsHome"]["date"][locale]}2</option>
+                            <option value="3">{lang_value["eventsHome"]["date"][locale]}3</option>
                         </select>
                     </div>
                     <div className={classes.rightBar}>
                         <div className={classes.listings}>
                             <FaListUl color="white"/>
-                            <span className={classes.listingsText}>{ locale === "EN" ? "Listings" : locale === "EN" ? "listados" : "" }</span>
+                            <span className={classes.listingsText}>{lang_value["eventsHome"]["listings"][locale]}</span>
                         </div>
                         <div className={classes.calendar}>
                             <FaCalendarAlt />
-                            <span className={classes.calendarText}>{ locale === "EN" ? "Calendar" : locale === "ES" ? "Calendario" : "" }</span>
+                            <span className={classes.calendarText}>{lang_value["eventsHome"]["calendar"][locale]}</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div className={classes.allConcertsbody}>
-                <h5 className={classes.allConcertsTitle}>{ locale === "EN" ? "All Concerts" : locale === "ES" ? "Todos los conciertos" : "" }</h5>
+                <h5 className={classes.allConcertsTitle}>{lang_value["eventsHome"]["allConcerts"][locale]}</h5>
                 <div>
                     { eventDates.map((eventDate, i) => (
                         <div key={i} className={classes.concertsItem}>
@@ -70,14 +73,14 @@ const EventsAllConcerts = (props) => {
                                     locale={locale}
                                     // href={`/events/${eventDate.artistId}/${eventDate.eventId}/${eventDate.date}`}
                                 >
-                                    { locale === "EN" ? "See Tickets" : locale === "ES" ? "Ver entradas" : "" }
+                                    {lang_value["eventsHome"]["seeTickets"][locale]}
                                 </a>
                             </div>
                         </div>
                     )) }
                 </div>
                 <div className={classes.loadMore}>
-                    { eventDates.length > 10 ? <button className={classes.loadMoreBtn}>{ locale === "EN" ? "Load More" : locale === "ES" ? "Cargamas" : "" }</button> : "" }
+                    { eventDates.length > 10 ? <button className={classes.loadMoreBtn}>{lang_value["eventsHome"]["loadMore"][locale]}</button> : "" }
                 </div>
             </div>
         </div>

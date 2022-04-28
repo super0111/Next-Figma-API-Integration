@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import classes from './eventsHeader.module.css'
+import { Context } from "./../../../../components/AppContext"
 
 const EventsHeader = (props) => {
     const { locale } = useRouter()
+    const { lang_value } = useContext(Context)
     const { event, state, setState, eventDates } = props
     return (
         <div className={classes.header}>
@@ -23,13 +25,13 @@ const EventsHeader = (props) => {
                     <div className={classes.headerBottomBody}>
                         <div onClick={() => setState("Events")} className={classes.cursorPointer}>
                             <span className={ state === 'Events' ? `${classes.skyColor} ${classes.headerBottomText}` : classes.headerBottomText }>
-                                { locale === "EN" ? "Events" : locale === "ES" ? "Eventos" : "" } ({eventDates.length})
+                            {lang_value["events"][locale]} ({eventDates.length})
                             </span>
                             <div className={ state === 'Events' ? classes.borderBottom : "" }></div>
                         </div>
                         <div onClick={() => setState("Bio")} className={classes.cursorPointer}>
                             <span className={ state === 'Bio' ? `${classes.skyColor} ${classes.headerBottomText}` : classes.headerBottomText}>
-                                { locale === "EN" ? "Bio" : locale === "ES" ? "Biografia" : "" }
+                                {lang_value["bio"][locale]}
                             </span>
                             <div className={ state === 'Bio' ? classes.borderBottom : ""}></div>
                         </div>

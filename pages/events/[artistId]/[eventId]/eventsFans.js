@@ -1,15 +1,18 @@
+import {Context} from './../../../../components/AppContext';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
 import classes from './eventsFans.module.css'
 
 const EventsFans = (props) => {
     const { Families } = props
     const { locale } = useRouter()
+    const { lang_value } = useContext(Context)
     return (
         <div className={classes.fans}>
             <div className={classes.dFlex}>
-                <h5 className={classes.title}>{ locale === "EN" ? "Fans Also Viewed" : locale === "ES" ? "Las fans tambien vieron" : "" }</h5>
+                <h5 className={classes.title}>{lang_value["eventsHome"]["fan"][locale]}</h5>
                 <div className={classes.dFlex}>
-                    <button className={classes.seeAllButton}>{ locale === "EN" ? "See All" : locale === "ES" ? "Ver Todo" : "" }</button>
+                    <button className={classes.seeAllButton}>{lang_value["eventsHome"]["seeAll"][locale]}</button>
                     <img className={classes.seeAllIcon} src="/images/Homepage1/Arrow 1.png" />
                 </div>
             </div>
@@ -24,7 +27,7 @@ const EventsFans = (props) => {
                                         {Family.star}
                                         <img className={classes.starImg} src="/images/Homepage1/star.png" />    
                                     </div> 
-                                    <div className={classes.eventsText}>{Family.events} { locale === "EN" ? "Events" : locale === "ES" ? "Eventos" : "" }</div>   
+                                    <div className={classes.eventsText}>{Family.events} {lang_value["events"][locale]}</div>   
                                 </div>
                                 <div className={classes.favorite}>
                                     <img className={classes.favoriteImg} src="/images/Events/Group 65.png" />

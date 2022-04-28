@@ -35,12 +35,9 @@ const sections2 = [
 const HeaderNav = (props) => {
   const { specialBg } = props
   const { locale } = useRouter()
-  const { countryValue } = useContext(Context);
-  console.log("countryValue", countryValue)
-
+  const { countryValue, lang_value } = useContext(Context);
   const [scroll, setScroll] = useState(false);
   const [ modalIsShow, setModalIsShow ] = useState(false)
-
   useEffect(() => {
     window.addEventListener('scroll', () => {
       setScroll(window.scrollY > 50);
@@ -133,7 +130,7 @@ const HeaderNav = (props) => {
             href=''
             className={classes.navResponsiveToolbarLink}
           >
-            { locale === "EN" ? "SignIn" : locale === "ES" ? "Señal En" : "" }
+            {lang_value["headerNav"]["signIn"][locale]}
           </Link>
         </div>
       </div>

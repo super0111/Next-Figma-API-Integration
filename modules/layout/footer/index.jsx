@@ -1,6 +1,8 @@
 
   import classes from './index.module.css'
   import { useRouter } from 'next/router'
+import { useContext } from 'react'
+import { Context } from '../../../components/AppContext'
 
   const helpfulLinks = [
     { title: 'My Account', locale: "EN", },
@@ -65,12 +67,13 @@ const friendsPartners = [
 
 export default function Footer() {
     const { locale } = useRouter()
+    const { lang_value } = useContext(Context)
     return (
         <div className={`${classes.footer} ${classes.footerBg}`}>
             <div className={classes.footerItemField}>
                 <div className={classes.footerItem}>
                     <div className={classes.footerTitlefield}>
-                        <h5 className={classes.footerTitle}>{ locale === "EN" ? "Helpful Links" : locale ==="ES" ? "Enlaces Tiles" : "" }</h5>
+                        <h5 className={classes.footerTitle}>{lang_value["footer"]["helpfull"][locale]}</h5>
                         <img className={classes.footerTitleLine} src="/images/bottom-line.png" />
                     </div>
                     {helpfulLinks.filter(p => p.locale === locale).map((helpfulLink) => (
@@ -82,7 +85,7 @@ export default function Footer() {
                 </div>
                 <div className={classes.footerItem}>
                     <div className={classes.footerTitlefield}>
-                        <h5 className={classes.footerTitle}>{ locale === "EN" ? "Our Network" : locale === "ES" ? "Nuestra Red" : "" }</h5>
+                        <h5 className={classes.footerTitle}>{lang_value["footer"]["network"][locale]}</h5>
                         <img className={classes.footerTitleLine} src="/images/bottom-line.png" />
                     </div>
                     {ourNetworks.filter(p => p.locale === locale).map((ourNetwork) => (
@@ -94,7 +97,7 @@ export default function Footer() {
                 </div>
                 <div className={classes.footerItem}>
                     <div className={classes.footerTitlefield}>
-                        <h5 className={classes.footerTitle}>{ locale === "EN" ? "About Us" : locale === "ES" ? "Sobre nosotras" : "" }</h5>
+                        <h5 className={classes.footerTitle}>{lang_value["footer"]["about"][locale]}</h5>
                         <img className={classes.footerTitleLine} src="/images/bottom-line.png" />
                     </div>
                     {aboutUss.filter(p => p.locale === locale).map((aboutUs) => (
@@ -106,7 +109,7 @@ export default function Footer() {
                 </div>
                 <div className={classes.footerItem}>
                     <div className={classes.footerTitlefield}>
-                        <h5 className={classes.footerTitle}>{ locale === "EN" ? "Friends & Partners" : locale === "ES" ? "Amigos and Socios" : "" }</h5>
+                        <h5 className={classes.footerTitle}>{lang_value["footer"]["friends"][locale]}</h5>
                         <img className={classes.footerTitleLine} src="/images/bottom-line.png" />
                     </div>
                     {friendsPartners.filter(p => p.locale === locale).map((friendsPartner) => (
@@ -116,7 +119,7 @@ export default function Footer() {
                         </div>
                     ))}
                     <div className="d-flex justify-content-start align-items-center footer-ourApp-text-title">
-                        <h5 className={classes.footerTitle}>{ locale === "EN" ? "Get Our App" : locale === "ES" ? "Obtenga Nuestra Aplicación" : "" }</h5>
+                        <h5 className={classes.footerTitle}>{lang_value["footer"]["app"][locale]}</h5>
                         <img className={classes.ourAppIcon} src="/images/apple.png" />
                         <img className={classes.ourAppIcon} src="/images/Unity.png" />
                     </div>
@@ -136,15 +139,14 @@ export default function Footer() {
             <img className={classes.divider} src="/images/Rectangle 40.png" />
             <div className={classes.footerBottom}>
                 <span className={classes.footerBottomText}>
-                    { locale === "EN" ? "By continuing past this page, you agree to our Terms of Use." 
-                    : locale === "ES" ? "Al continuar más allá de esta pagina, acepta nuestros Terminos de uso." : ""}
+                    {lang_value["footer"]["text1"][locale]}
                 </span>
                 <div className={classes.dFlex}>
-                    <span className={classes.footerBottomText}>{ locale === "EN" ? "@Ticketmaster 2021" : locale === "ES" ? "@TicketMaster 2021" : ""}</span>
+                    <span className={classes.footerBottomText}>{lang_value["footer"]["text2"][locale]}</span>
                     <img className={classes.borderVertical} src="/images/Rectangle 42.png" />
                     <div className={classes.dFlex}>
                         <img className={classes.flagIcon} src="/images/image 2.png" />
-                        <span className={classes.footerBottomText}>{ locale === "EN" ? "United States" : locale === "ES" ? "Estados Unidos" : "" }</span>
+                        <span className={classes.footerBottomText}>{lang_value["footer"]["united"][locale]}</span>
                     </div>
                 </div>
             </div>

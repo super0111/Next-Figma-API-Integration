@@ -10,15 +10,17 @@ const stateReducer = (state, action) => {
 }
 
 export function ShopContextProvider({ children }) {
-  const [state, setState] = useReducer(stateReducer, {
-    stage: 'init',
-    cart: {
-      // ticketsCnt: 2,
-      // totalPrice: 440,
-      // totalFees: 30,
-      // currency: 'USD',
-    },
-  });
+  const [state, setState] = useReducer(
+    stateReducer, {
+      stage: 'init',
+      cart: {
+        // ticketsCnt: 2,
+        // totalPrice: 440,
+        // totalFees: 30,
+        // currency: 'USD',
+      },
+    }
+  );
 
   function setStage(newStage) {
     setState({ stage: newStage });
@@ -29,7 +31,6 @@ export function ShopContextProvider({ children }) {
   }
 
   function triggerTimeout() {
-    //TODO: Notify server?
     setStage('timeout');
   }
 
@@ -60,8 +61,7 @@ export function ShopContextProvider({ children }) {
             toast.error("Error", res.data)
           }
       })
-      .catch(err=> {
-          console.log({err}); })
+      .catch(err=> { console.log({err}); })
   }
 
   function onPaymentAuthorized(data) {

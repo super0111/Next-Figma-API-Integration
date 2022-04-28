@@ -1,7 +1,7 @@
 import classes from './ticketsListBody.module.css';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { useRouter } from 'next/router';
-
+import {Context} from "./../../../components/AppContext"
 const Lowest = (props) => {
     const { lowestLists, selectValue, ticketCount } = props
     const { locale } = useRouter()
@@ -88,15 +88,16 @@ const TicketsListBody = (props) => {
     const ticketCount = props.ticketCount?.value;
     const { lowestLists, sectionLists } = props
     const [ status, setStatus ] = useState("lowest");
+    const { lang_value } = useContext(Context)
     return (
         <div className={classes.ticketsListBody}>
             <div className={classes.TicketsListHeader}>
                 <div onClick={() => setStatus("lowest")} className={classes.left}>
-                    <span className={classes.lowestTitle}>{ locale === "EN" ? "Lowest Price" : locale === "ES" ? "El precio mas bajo" : "" }</span>
+                    <span className={classes.lowestTitle}>{lang_value["eventsHome"]["lowList"][locale]}</span>
                     <div className={ status==="lowest" ? classes.activeBorder : classes.ListHeaderborder }></div>    
                 </div>
                 <div onClick={() => setStatus("section")} className={classes.right}>
-                    <span className={classes.sectionTitle}>{ locale === "EN" ? "Section" : locale === "ES" ? "Sección" : "" }</span>
+                    <span className={classes.sectionTitle}>{lang_value["eventsHome"]["section"][locale]}</span>
                     <div className={ status==="section" ? classes.activeBorder : classes.ListHeaderborder }></div> 
                 </div>
             </div>

@@ -1,12 +1,12 @@
-import { useState, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
+import lang_value from "./../data_lang.json"
 
 const Context = createContext();
 
 const AppProvider = ({children}) => {
     const [countryValue, setCountryValue] = useState('');
-    console.log("countryvalue", countryValue)
     return (
-        <Context.Provider value={{countryValue, setCountryValue}}>
+        <Context.Provider value={{countryValue, setCountryValue, lang_value}}>
             {children}
         </Context.Provider>
     );

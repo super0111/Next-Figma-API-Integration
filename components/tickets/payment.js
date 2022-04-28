@@ -1,7 +1,9 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useShopContext } from '../../context/shopContext';
 import classes from './payment.module.css';
+import { Context } from '../AppContext';
+import { useRouter } from 'next/router';
 
 const paymentMethods = [
   {
@@ -90,6 +92,8 @@ function PaymentMethod(props) {
 }
 
 function CardForm() {
+  const { locale } = useRouter()
+  const { lang_value } = useContext(Context)
   const [card, setCard] = useState({
     number: '4097440000000004',
     securityCode: '321',
@@ -111,15 +115,16 @@ function CardForm() {
     newCard[e.currentTarget.name] = e.currentTarget.value;
     setCard(newCard);
   }
+
   return (
     <form className={classes.form}>
       <div>
-        <label className={classes.card_name} htmlFor='nameoncard'>Name on Card</label>
+        <label className={classes.card_name} htmlFor='nameoncard'>{lang_value["tickets"]["cardName"][locale]}</label>
         <input className={classes.input_value} id='nameoncard' name='nameoncard' placeholder='Enter Card Name' type='text' />
       </div>
       <div>
         <label className={classes.card_name} htmlFor='cardNumber'>
-          Card Number
+          {lang_value["tickets"]["cardNumber"][locale]}
         </label>
         <input
           className={classes.input_value}
@@ -132,7 +137,7 @@ function CardForm() {
         />
       </div>
       <div>
-        <span  className={classes.card_name}>Exp. Date</span>
+        <span  className={classes.card_name}> {lang_value["tickets"]["expDate"][locale]}</span>
         <input className={classes.exp_Date} name='experationdate' type='text' placeholder='MM/YYYY' />
       </div>
       <div className={classes.cvc}>
@@ -149,7 +154,7 @@ function CardForm() {
       </div>
       <div className={classes.btn_field}>
         <button className={classes.buy_btn} type='submit' onClick={onPay}>
-          Buy Now
+          {lang_value["tickets"]["buyNow"][locale]}
         </button>
       </div>
     </form>

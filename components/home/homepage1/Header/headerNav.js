@@ -24,14 +24,10 @@ const sections2 = [
 
 const HeaderNav = (props) => {
   const router = useRouter()
-  const { countryValue } = useContext(Context);
+  const { countryValue, lang_value } = useContext(Context);
   const { locale } = useRouter()
-
-  console.log("props.session",props.session);
   const { data: session, status } = useSession()
-  console.log("header session, status",session, status)
   const [ scroll, setScroll ] = useState(false);
-
   const [ modalIsShow, setModalIsShow ] = useState(false)
 
   useEffect(() => {
@@ -89,7 +85,7 @@ const HeaderNav = (props) => {
                     locale={locale}
                     className={classes.navToolbarLink}
                   >
-                    { locale === "EN" ? "SignIn" : locale === "ES" ? "Señal En" : "" }
+                    {lang_value["headerNav"]["signIn"][locale]}
                   </Link>
               </Toolbar> : 
               <Toolbar className={classes.rightSideMenu} component='nav' variant='dense'>
@@ -99,7 +95,7 @@ const HeaderNav = (props) => {
                     className={classes.navToolbarLink}
                     onClick={handleSignout}
                   >
-                    { locale === "EN" ? "Signout" : locale === "ES" ? "Desconectar" : "" }
+                    {lang_value["headerNav"]["signout"][locale]}
                   </Link>
               </Toolbar>
           }
@@ -143,7 +139,7 @@ const HeaderNav = (props) => {
                   href=''
                   className={classes.navResponsiveToolbarLink}
                 >
-                  { locale === "EN" ? "Signout" : locale === "ES" ? "Desconectar" : "" }
+                 {lang_value["headerNav"]["signout"][locale]}
                 </Link>
               </div> : status === "unauthenticated" ?
               <div className={classes.navbarSignInResponsive}>
@@ -153,7 +149,7 @@ const HeaderNav = (props) => {
                 href='/signIn'
                 className={classes.navResponsiveToolbarLink}
               >
-                { locale === "EN" ? "SignIn" : locale === "ES" ? "Señal en" : "" }
+               {lang_value["headerNav"]["signIn"][locale]}
               </Link>
             </div> : ""
         }
@@ -165,11 +161,3 @@ const HeaderNav = (props) => {
   );
 };
 export default HeaderNav;
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      session: await getSession(context),
-    },
-  };
-}

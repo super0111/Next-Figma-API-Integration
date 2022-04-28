@@ -2,8 +2,6 @@ const events = [
   {
     id: 'ayayay',
     featured: true,
-    // title: 'Christian Nodal',
-    // text: 'AYAYAY! 2022 tour',
     artist: { id: 'nodal', name: 'Christian Nodal' },
     priceRange: { min: 10, max: 2000 },
     bigImage: '/images1/events/nodal/ayayay/big.jpg',
@@ -12,8 +10,6 @@ const events = [
   {
     id: 'papi',
     featured: true,
-    // title: 'Maluma',
-    // text: "Papi Juancho Europe Tour 2022",
     artist: { id: 'maluma', name: 'Maluma' },
     bigImage: '/images1/events/maluma/papi/big.webp',
     bigImageHasTitle: true,
@@ -22,8 +18,6 @@ const events = [
   {
     id: '40años',
     featured: true,
-    // title: 'NFL Tickets',
-    // text: "Grab tickets today and be there live in the stands!",
     artist: { id: 'angeles', name: 'Los Ángeles Azules' },
     bigImage: '/images1/events/angeles/40años/big.jpg',
     bigImageHasTitle: true,
@@ -162,7 +156,6 @@ const eventDates = [
     venue: 'Domo Madero',
   },
 ];
-
 const artists = [
   {
     id: 'nodal',
@@ -190,7 +183,6 @@ const artists = [
       'Los Ángeles Azules are a Mexican musical group that plays the cumbia sonidera genre.',
   },
 ];
-
 const venues = [
   {
     id: 'monumental',
@@ -209,7 +201,6 @@ const venues = [
       'The Estadio Caliente Xoloitzcuintles is a multi-use stadium in Tijuana, Baja California, Mexico. ',
   },
 ];
-
 const artistDetails = [
   {
     artistId: 'nodal',
@@ -224,7 +215,6 @@ const artistDetails = [
     bio: '<b>Angeles </b> is the most important youth soloist of the Mexican Regional genre, with only 19 years of age, he has managed to place 5 singles in the first place of the specialized charts for several weeks “No Te Contaron Mal”, “ Me Deje Llevar”, “Adios Amor”, “Te Fallé”, “Eres”", and on Youtube, he has more than a trillion visits, on Spotify more than 3.7 million listeners per month.  Multi-awarded in Mexico and the United States, the only Mexican regional artist in the 21st 21, with 3 awards on Billboard, 2 on iHeartradio, a Latin Grammy to name a few, is a singer who has broken the schemes of this competitive and difficult genre. Proving that to achieve success, age does not matter, it matters the talent, discipline, dedication to 100% and a great team.<p>After his already successful tour in Mexico and the USA, "DE TU MANO TOUR", he is starting 2019 with his "Ahora" tour, where besides his traditional Mariacheño, he will present several surprises that will surely please his fans.</p>',
   },
 ];
-
 const lowestLists = [
   { ticketId: "1", title: "Sec 232", row: "1", comment: "VIP", price: 36.00, type: "Mobile Entry", locale: "EN" },
   { ticketId: "2", title: "Sec 201", row: "2", comment: "BARRERA SOMBRA", price: 36.00, type: "Mobile Entry", locale: "EN" },
@@ -295,7 +285,6 @@ const sectionLists = [
   { ticketId: "15", title: "Setion 2", row: "2", comment: "VIP", price: 36.00, type: "Entrada Movil", locale: "ES" },
   { ticketId: "16", title: "Setion 1", row: "3", comment: "T. ALTO", price: 36.00, type: "Entrada Movil", locale: "ES" },
 ]
-
 const ticketsDetails = [
   { ticketId: "11", title: "AYAYAY! TOUR", date: "Sunday, April 10, 2022 at 7.00 AM", quantity: "3", priceLevel: "Bowl", level: "BARRERA SOMBRA", section: "1", Row: "2", seats: "6-8", totalPrice: 410, orderCharge: 30, currency: "USD", locale: "EN" },
   { ticketId: "2", title: "Imagine Ghost", date: "Monday, April 11, 2022 at 8.00 AM", quantity: "5", priceLevel: "Rowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 645, orderCharge: 5, currency: "USD", locale: "EN" },
@@ -325,8 +314,8 @@ const ticketsDetails = [
   { ticketId: "12", title: "Imagine Dragons", date: "Sunday, April 10, 2022 at 7.12 AM", quantity: "4", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 233, orderCharge: 5, currency: "USD", locale: "ES" },
   { ticketId: "13", title: "Imagine Dragons", date: "Domingo, 10 de abril de 2022 a las 07:00", quantity: "3", priceLevel: "Bowl", level: "MAIN", section: "102H", Row: "3", seats: "6-8", totalPrice: 533, orderCharge: 5, currency: "USD", locale: "ES" },
 ]
+const tickets = require('./data/tickets.json')
 
-const tickets = require('./data/tickets.json');
 
 function getAllEvents() {
   return events;
@@ -379,14 +368,6 @@ async function getEvent(artistId, eventId) {
   return events.find(
     (event) => event.id == eventId && event.artist.id == artistId
   );
-}
-
-function getEventsByMonth(year, month) {
-  return events.filter((event) => event.year === year && eve);
-}
-
-function getAllArtists() {
-  return artists;
 }
 
 function getArtist(artistId) {

@@ -1,22 +1,25 @@
+import { useContext } from 'react';
 import classes from './topSelling.module.css';
 import { useRouter } from "next/router"
-
+import { Context } from "./../../AppContext";
 
 export default function TopSelling(props) {
+    const { lang_value } = useContext(Context);
     const { TopSellings } = props
     const { locale } = useRouter()
+    console.log("locale", locale)
     return (
         <div className={classes.topSelling}>
             <div className={classes.dFlex}>
                 <div className={classes.flexColumn}>
                     <div className={classes.dFlex}>
-                        <h1 className={classes.topTitle}>{ locale === "EN" ? "Top Selling" : locale === "ES" ? "Mas vendidos" : ""}</h1>
+                        <h1 className={classes.topTitle}>{lang_value["topSelling"]["topSelling"][locale]}</h1>
                         <div className={classes.borderHor}></div>
                     </div>
                     <div className={classes.concertsField}>
-                        <span className={classes.title}>{ locale === "EN" ? "Concerts" : locale === "ES" ? "Conciertos" : "" }</span>
+                        <span className={classes.title}>{lang_value["topSelling"]["concerts"][locale]}</span>
                         <div className={classes.dFlex}>
-                            <button className={classes.seeAllBtn}>{ locale === "EN" ? "See All" : locale === "ES" ? "Ver Todo" : ""}</button>
+                            <button className={classes.seeAllBtn}>{lang_value["topSelling"]["seeAll"][locale]}</button>
                             <img className={classes.seeAllIcon} src="/images/Homepage1/Arrow 1.png" />
                         </div>
                     </div>
@@ -32,7 +35,7 @@ export default function TopSelling(props) {
                                     {TopSelling.star}
                                     <img className={classes.starImg} src="/images/Homepage1/star.png" />    
                                 </div> 
-                                <div className={classes.events}>{TopSelling.events}{ locale === "EN" ? "Events" : locale === "ES" ? "Eventos" : ""}</div>   
+                                <div className={classes.events}>{TopSelling.events}{lang_value["topSelling"]["events"][locale]}</div>   
                             </div>
                         </div>
                         <div className={classes.cardTextField}>

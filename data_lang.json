@@ -1,0 +1,238 @@
+{
+    "headerBody": {
+        "seeTickets": {
+            "EN": "See Tickets",
+            "ES": "Ver entradas"
+        },
+        "makeLiveHappen": {
+            "EN": "Let's Make Live Happen",
+            "ES": "Hagamos que la vida suceda"
+        },
+        "shopMillions": {
+            "EN": "Shop millions of live events and discover can't-miss concerts, games, theater and more.",
+            "ES": "Compre millones de eventos en vivo y descubra conciertos, juegos, teatro y más que no se puede perder."
+        },
+        "allDates": {
+            "EN": "All Dates",
+            "ES": "Todas fechas"
+        },
+        "weekend": {
+            "EN": "This Weekend",
+            "ES": "Este fin de semana"
+        },
+        "range": {
+            "EN": "Date Range",
+            "ES": "Rango de fechas"
+        },
+        "search": {
+            "EN": "Search",
+            "ES": "Busqueda"
+        },
+        "date": {
+            "EN": "Date",
+            "ES": "Fecha"
+        }
+    },
+    "headerNav": {
+        "signIn" : {
+            "EN": "Sign In",
+            "ES": "Señal En"
+        },
+        "signout": {
+            "EN": "Signout",
+            "ES": "Desconectar"
+        }
+    },
+    "topSelling": {
+        "topSelling": {
+            "EN": "Top Selling",
+            "ES": "Mas vendidos"
+        },
+        "concerts": {
+            "EN": "Concerts",
+            "ES": "Conciertos"
+        },
+        "seeAll": {
+            "EN": "See All",
+            "ES": "Ver Todo"
+        },
+        "events": {
+            "EN": "Events",
+            "ES": "Eventos"
+        },
+        "sports": {
+            "EN": "Sports",
+            "ES": "Deportes"
+        }
+    },
+    "events": {
+        "EN": "Events",
+        "ES": "Eventos"
+    },
+    "bio": {
+        "EN": "Bio",
+        "ES": "Biografia"
+    },
+    "moreInfo": {
+        "EN": "More Info",
+        "ES": "Más information"
+    },
+    "eventsHome": {
+        "noConcerts": {
+            "EN": "No Concerts Near",
+            "ES": "No hay conciertos cerca"
+        },
+        "selectCity": {
+            "EN": "(select your city)",
+            "ES": "(seleccione su ciudad)"
+        },
+        "selectDates": {
+            "EN": "Select your dates",
+            "ES": "Seleccione sus fechas"
+        },
+        "date": {
+            "EN": "Date",
+            "ES": "Fechas"
+        },
+        "listings": {
+            "EN": "Listings",
+            "ES": "Listados"
+        },
+        "calendar": {
+            "EN": "Calendar",
+            "ES": "Calendario"
+        },
+        "allConcerts": {
+            "EN": "All Concerts",
+            "ES": "Todos los conciertos"
+        },
+        "seeTickets": {
+            "EN": "See Tickets",
+            "ES": "Ver entradas"
+        },
+        "loadMore": {
+            "EN": "Load More",
+            "ES": "Cargamas"
+        },
+        "fromEric": {
+            "EN": "From Eric Church",
+            "ES": "De la iglesia de Eric"
+        },
+        "follow": {
+            "EN": "Follow",
+            "ES": "Seguir"
+        },
+        "fan": {
+            "EN": "Fans Also Viewed",
+            "ES": "Las fans tambien vieron"
+        },
+        "seeAll": {
+            "EN": "See All",
+            "ES": "Ver Todo"
+        },
+        "loading": {
+            "EN": "React Skelleton should be here",
+            "ES": "Reaccionar Skelleton deberia estar aquí"
+        },
+        "loadingErr": {
+            "EN": "Error component should be here",
+            "ES": "El componente de error deberia estar aquí"
+        },
+        "lowList": {
+            "EN": "Lowest Price",
+            "ES": "El precio mas bajo"
+        },
+        "section": {
+            "EN": "Section",
+            "ES": "Sección"
+        }
+    },
+    "tickets": {
+        "timeout": {
+            "EN": "Timed out!",
+            "ES": "Desconectado!"
+        },
+        "timeloading": {
+            "EN": "Time remaining",
+            "ES": "Tiempo restante"
+        },
+        "loading": {
+            "EN": "Loading...",
+            "ES": "Cargando..."
+        },
+        "details": {
+            "EN": "Ticket Details",
+            "ES": "Details of the billet"
+        },
+        "title": {
+            "EN": "Title of tickets:",
+            "ES": "Title de las entradas:"
+        },
+        "number": {
+            "EN": "Number of tickets:",
+            "ES": "Numero de entradas:"
+        },
+        "price": {
+            "EN": "Price of tickets:",
+            "ES": "Precio de las entradas:"
+        },
+        "includeFee": {
+            "EN": "includes fees",
+            "ES": "including tariffs"
+        },
+        "cardNumber": {
+            "EN": "Card Number",
+            "ES": "Número de tarjeta"
+        },
+        "ticketCart": {
+            "EN": "Ticket Cart",
+            "ES": "Carrito de boletos"
+        },
+        "cardName": {
+            "EN": "Name on Card",
+            "ES": "Nombre en la tarjeta"
+        },
+        "expDate": {
+            "EN": "Exp. Date",
+            "ES": "Due date"
+        },
+        "buyNow": {
+            "EN": "Buy Now",
+            "ES": "Compra ahora"
+        }
+    },
+    "footer": {
+        "helpfull": {
+            "EN": "Helpful Links",
+            "ES": "Enlaces Tiles"
+        },
+        "network": {
+            "EN": "Our Network",
+            "ES": "Nuestra Red"
+        },
+        "about": {
+            "EN": "About Us",
+            "ES": "Sobre nosotras"
+        },
+        "friends": {
+            "EN": "Friends & Partners",
+            "ES": "Amigos and Socios"
+        },
+        "app": {
+            "EN": "Get Our App",
+            "ES": "Obtenga Nuestra Aplicación"
+        },
+        "text1": {
+            "EN": "By continuing past this page, you agree to our Terms of Use.",
+            "ES": "Al continuar más allá de esta pagina, acepta nuestros Terminos de uso."
+        },
+        "text2": {
+            "EN": "@Ticketmaster 2021",
+            "ES": "@TicketMaster 2021"
+        },
+        "united": {
+            "EN": "United States",
+            "ES": "Estados Unidos"
+        }
+    }
+}
